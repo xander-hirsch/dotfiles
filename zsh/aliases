@@ -1,0 +1,10 @@
+alias d='dirs -v'
+for index ({1..9}) alias "$index"="cd +${index}"; unset index
+
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+
+alias bud='brew update'
+alias bug='brew upgrade'
+alias bo='brew outdated'

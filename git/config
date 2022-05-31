@@ -1,0 +1,7 @@
+[core]
+	editor = nvim
+[init]
+	defaultBranch = main
+[user]
+	email = xh@xanderhirsch.us
+	name = Xander Hirsch
