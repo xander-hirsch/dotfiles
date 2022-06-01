@@ -1,4 +1,6 @@
 zsh/git-prompt
-zsh/.zcompdump
-zsh/.zsh_history
+zsh/.zcompcache/
 zsh/.zsh_sessions/
+zsh/.zcompdump
+zsh/.zhistory
+zsh/.zsh_history
