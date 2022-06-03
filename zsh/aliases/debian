@@ -1,0 +1,3 @@
+alias aud='sudo apt update'
+alias alo='apt list --outdated'
+alias aug='sudo apt upgrade -y'

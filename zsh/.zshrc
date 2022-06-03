@@ -13,6 +13,7 @@ setopt HIST_NO_STORE
 # Prompt
 setopt PROMPT_SUBST
 PS1='%B%F{green}%m%f %F{blue}%c%f %(0?..%F{red}%? %f)%% %b'
+export PS1_NO_HOSTNAME=$(echo $PS1 | sed 's/%F{green}%m%f //')
 fpath=($ZDOTDIR $fpath)
 autoload -Uz git-prompt
 export GIT_PS1_SHOWDIRTYSTATE=1
@@ -51,7 +52,26 @@ cursor_mode() {
 
 cursor_mode
 
-source "$ZDOTDIR/aliases"
+ALIASES_DIR="$ZDOTDIR/aliases"
+source "$ALIASES_DIR/universal"
+OS=$(uname)
+case "$(uname)" in
+    'Darwin')
+        source "$ALIASES_DIR/macos"
+        if type brew &>/dev/null; then
+            fpath=("$(brew --prefix)/share/zsh/site-functions" $fpath)
+        fi
+        ;;
+    'Linux')
+        eval "$(cat /etc/os-release | grep 'ID_LIKE=')"
+        case "$ID_LIKE" in
+            'debian')
+                source "$ALIASES_DIR/debian"
+                ;;
+        esac
+	;;
+esac
+
 source "$ZDOTDIR/completion.zsh"
 
 ZSHRC_LOCAL="$HOME/.zshrc_local"
