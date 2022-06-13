@@ -22,8 +22,17 @@ export GIT_PS1_SHOWUPSTREAM=auto
 precmd () { git-prompt }
 
 # Keybindings
-bindkey -v
 export KEYTIMEOUT=1
+setopt VI
+bindkey -M vicmd '^[k' history-beginning-search-backward
+bindkey -M viins '^[k' history-beginning-search-backward
+bindkey -M vicmd '^[j' history-beginning-search-forward
+bindkey -M viins '^[j' history-beginning-search-forward
+bindkey -M viins '^Q' push-input
+bindkey -M viins '^[h' run-help
+bindkey -M viins '^[w' which-command
+bindkey -M viins '^[u' undo
+bindkey -M viins '^[[Z' expand-or-complete-prefix  # Shift-Tab
 
 cursor_mode() {
     # See https://ttssh2.osdn.jp/manual/4/en/usage/tips/vim.html for cursor shapes
@@ -52,6 +61,23 @@ cursor_mode() {
 
 cursor_mode
 
+# Completion
+zmodload -i zsh/complist
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect '^[j' accept-and-infer-next-history
+bindkey -M menuselect '^[u' undo
+
+setopt COMPLETE_ALIASES
+autoload -U compinit && compinit
+
+zstyle ':completion:*' completer _extensions _complete _approximate
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$ZDOTDIR/.zcompcache"
+zstyle ':completion:*' menu select=4
+
 ALIASES_DIR="$ZDOTDIR/aliases"
 source "$ALIASES_DIR/universal"
 OS=$(uname)
@@ -71,8 +97,6 @@ case "$(uname)" in
         esac
 	;;
 esac
-
-source "$ZDOTDIR/completion.zsh"
 
 ZSHRC_LOCAL="$HOME/.zshrc_local"
 test -r $ZSHRC_LOCAL && source $ZSHRC_LOCAL || true

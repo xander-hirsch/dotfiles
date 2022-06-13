@@ -1,3 +1,4 @@
 alias aud='sudo apt update'
 alias alu='apt list --upgradable'
 alias aug='sudo apt upgrade -y'
+alias reboot-required='[ -f /var/run/reboot-required ] && cat /var/run/reboot-required'
