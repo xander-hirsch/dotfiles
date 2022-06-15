@@ -1,3 +1,5 @@
+alias b='brew'
+alias bi='brew install'
+alias bo='brew outdated'
 alias bud='brew update'
 alias bug='brew upgrade'
-alias bo='brew outdated'

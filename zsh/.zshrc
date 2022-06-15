@@ -28,7 +28,8 @@ bindkey -M vicmd '^[k' history-beginning-search-backward
 bindkey -M viins '^[k' history-beginning-search-backward
 bindkey -M vicmd '^[j' history-beginning-search-forward
 bindkey -M viins '^[j' history-beginning-search-forward
-bindkey -M viins '^Q' push-input
+bindkey -M viins '^[q' push-input
+bindkey -M viins '^[.' insert-last-word
 bindkey -M viins '^[h' run-help
 bindkey -M viins '^[w' which-command
 bindkey -M viins '^[u' undo
@@ -70,7 +71,6 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect '^[j' accept-and-infer-next-history
 bindkey -M menuselect '^[u' undo
 
-setopt COMPLETE_ALIASES
 autoload -U compinit && compinit
 
 zstyle ':completion:*' completer _extensions _complete _approximate
