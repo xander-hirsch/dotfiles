@@ -1,4 +1,4 @@
-export ZDOTDIR="$HOME/.config/zsh"
+export ZDOTDIR="$HOME/.dotfiles/zsh"
 export OS_CATEGORY
 case $(uname -s) in
 	Darwin)
