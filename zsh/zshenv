@@ -1,3 +1,15 @@
-[[ $(uname) = 'Darwin' ]] && export SHELL_SESSIONS_DISABLE=1
-export XDG_CONFIG_HOME="$HOME/.config"
-export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+export ZDOTDIR="$HOME/.config/zsh"
+export OS_CATEGORY
+case $(uname -s) in
+	Darwin)
+		OS_CATEGORY=macos
+		export SHELL_SESSIONS_DISABLE=1
+		;;
+	Linux)
+		eval $(cat /etc/os-release | grep 'ID_LIKE=')
+		OS_CATEGORY=$ID_LIKE
+		;;
+	*)
+		unset OS_CATEGORY
+		;;
+esac
