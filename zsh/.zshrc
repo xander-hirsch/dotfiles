@@ -29,9 +29,10 @@ zstyle ':completion:*:descriptions' format '%F{cyan}-----  %d  -----%f'
 zstyle ':completion:*:warnings' format '%F{red}-- no matches found --%f'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' list-colors ''
-zstyle ':completion:*:ssh:*' users root xh $(whoami)
 
 setopt NO_LIST_BEEP
+SSH_CMDS='(ssh|ssh-copy-id|scp|sftp|rsync)'
+zstyle ":completion:*:${SSH_CMDS}:*" users root xh $(whoami)
 
 #####  Prompt  #####
 setopt PROMPT_SUBST
@@ -55,6 +56,7 @@ export VISUAL="$EDITOR"
 
 if [[ $OS_CATEGORY = 'macos' ]]; then
 	unset SHELL_SESSIONS_DISABLE
+	path=("$(brew --prefix)/opt/coreutils/libexec/gnubin" $path)
 	fpath=("$(brew --prefix)/share/zsh/site-functions" $fpath)
 fi
 
@@ -111,7 +113,7 @@ if [[ -a $USER_SSH_CONFIG ]]; then
 			ssh_hosts+=("@${SSH_HOST}")
 		fi
 	done
-	zstyle ':completion:*:ssh:*:my-accounts' users-hosts $ssh_hosts
+	zstyle ":completion:*:${SSH_CMDS}:*:my-accounts" users-hosts $ssh_hosts
 fi
 
 autoload -U compinit && compinit

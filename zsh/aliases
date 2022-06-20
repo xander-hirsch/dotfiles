@@ -15,6 +15,9 @@ alias gs='git status'
 alias m='make'
 alias v="$EDITOR"
 
+alias l='ls --color'
+alias ll='ls -lh --color'
+
 case $OS_CATEGORY in
 	'macos')
 		alias b='brew'

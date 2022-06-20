@@ -1,8 +1,8 @@
 if [[ $OS_CATEGORY == 'macos' ]]; then
 	if [[ $(uname -m) == 'arm64' ]]; then
-		HOMEBREW_PREFIX='/opt/homebrew'
+		export HOMEBREW_PREFIX='/opt/homebrew'
 	else
-		HOMEBREW_PREFIX='/usr/local'
+		export HOMEBREW_PREFIX='/usr/local'
 	fi
 	eval $(${HOMEBREW_PREFIX}/bin/brew shellenv)
 fi
