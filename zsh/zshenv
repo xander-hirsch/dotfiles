@@ -1,13 +1,13 @@
-export ZDOTDIR="$HOME/.dotfiles/zsh"
+export ZDOTDIR="${HOME}/.dotfiles/zsh"
 export OS_CATEGORY
 case $(uname -s) in
-	Darwin)
-		OS_CATEGORY=macos
-		export SHELL_SESSIONS_DISABLE=1
+	'Darwin')
+		OS_CATEGORY='macos'
+		export SHELL_SESSIONS_DISABLE='1'
 		;;
-	Linux)
+	'Linux')
 		eval $(cat /etc/os-release | grep 'ID_LIKE=')
-		OS_CATEGORY=$ID_LIKE
+		OS_CATEGORY="$ID_LIKE"
 		;;
 	*)
 		unset OS_CATEGORY

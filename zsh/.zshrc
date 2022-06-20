@@ -1,5 +1,5 @@
-# Keybindings
-export KEYTIMEOUT=1
+#####  Keybindings  #####
+export KEYTIMEOUT='1'
 setopt VI
 bindkey -M vicmd '^[k' history-beginning-search-backward
 bindkey -M viins '^[k' history-beginning-search-backward
@@ -10,44 +10,61 @@ bindkey -M viins '^[.' insert-last-word
 bindkey -M viins '^[h' run-help
 bindkey -M viins '^[w' which-command
 bindkey -M viins '^[u' undo
-bindkey -M viins '^[[Z' expand-or-complete-prefix  # Shift-Tab
+bindkey -M viins '^[r' redo
 
-# Completion
+#####  Completion  #####
 zmodload -i zsh/complist
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect '^[j' accept-and-infer-next-history
-bindkey -M menuselect '^[u' undo
+bindkey -M menuselect ';' accept-and-infer-next-history
+bindkey -M menuselect 'u' undo
 
-zstyle ':completion:*' completer _extensions _complete _approximate
+zstyle ':completion:*' completer _complete _approximate
 zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path "$ZDOTDIR/.zcompcache"
-zstyle ':completion:*' menu select=4
+zstyle ':completion:*:approximate:*' max-errors 2
+zstyle ':completion:*' menu select=8
+zstyle ':completion:*:descriptions' format '%F{cyan}-----  %d  -----%f'
+zstyle ':completion:*:warnings' format '%F{red}-- no matches found --%f'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*:ssh:*' users root xh $(whoami)
 
-# Prompt
+setopt NO_LIST_BEEP
+
+#####  Prompt  #####
 setopt PROMPT_SUBST
 PS1='%B%F{green}%m%f %F{blue}%c%f %(0?..%F{red}%? %f)%% %b'
 export PS1_NO_HOSTNAME=$(echo $PS1 | sed 's/%F{green}%m%f //')
-export GIT_PS1_SHOWDIRTYSTATE=1
-export GIT_PS1_SHOWCOLORHINTS=1
+export GIT_PS1_SHOWDIRTYSTATE='1'
+export GIT_PS1_SHOWCOLORHINTS='1'
 export GIT_PS1_SHOWUPSTREAM=auto
-autoload -U "$ZDOTDIR/git-prompt"
+autoload -U "${ZDOTDIR}/git-prompt"
 precmd () { git-prompt }
 
-# Environment Variables
-unset SHELL_SESSIONS_DISABLE
-export EDITOR=nvim
-export VISUAL=nvim
+#####  Environment Variables  #####
+if type nvim &> /dev/null ; then
+	export EDITOR='nvim'
+elif type vim &> /dev/null ; then
+	export EDITOR='vim'
+else
+	export EDITOR='vi'
+fi
+export VISUAL="$EDITOR"
 
-# Changing Directories
+if [[ $OS_CATEGORY = 'macos' ]]; then
+	unset SHELL_SESSIONS_DISABLE
+	fpath=("$(brew --prefix)/share/zsh/site-functions" $fpath)
+fi
+
+#####  Changing Directories  #####
 setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 setopt PUSHD_SILENT
 
-# History
-export HISTFILE="$ZDOTDIR/.zsh_history"
+#####  History  #####
+export HISTFILE="${ZDOTDIR}/.zsh_history"
 export HISTSIZE=12000
 export SAVEHIST=10000
 setopt EXTENDED_HISTORY
@@ -64,10 +81,10 @@ cursor_mode() {
 	cursor_beam='\e[6 q'
 
 	function zle-keymap-select {
-		if [[ ${KEYMAP} = vicmd || $1 = block ]]; then
+		if [[ $KEYMAP == vicmd || $1 == block ]]; then
 			echo -ne $cursor_block
-		elif [[ ${KEYMAP} = main || ${KEYMAP} = viins
-			|| ${KEYMAP} = '' ]] || $1 = 'beam' ]]; then
+		elif [[ ${KEYMAP} == main || ${KEYMAP} == viins
+			|| ${KEYMAP} == '' ]] || $1 == 'beam' ]]; then
 			echo -ne $cursor_beam
 		fi
 	}
@@ -82,14 +99,24 @@ cursor_mode() {
 
 cursor_mode
 
-if [[ $OS_CATEGORY = macos && $(type brew &> /dev/null) ]]
-then
-	fpath=("$(brew --prefix)/share/zsh/site-functions" $fpath)
+USER_SSH_CONFIG="${HOME}/.ssh/config"
+if [[ -a $USER_SSH_CONFIG ]]; then
+	HOST_PREFIX='^[[:space:]]*Host[[:space:]]+'
+	set -a ssh_hosts
+	for SSH_HOST in \
+		$(grep -E $HOST_PREFIX $USER_SSH_CONFIG | sed -E "s/${HOST_PREFIX}//")
+	do
+		if [[ ! ( $SSH_HOST =~ '\*' || -n ${ssh_hosts[(r)${SSH_HOST}]} ) ]]
+		then
+			ssh_hosts+=("@${SSH_HOST}")
+		fi
+	done
+	zstyle ':completion:*:ssh:*:my-accounts' users-hosts $ssh_hosts
 fi
 
 autoload -U compinit && compinit
 
-source "$ZDOTDIR/aliases"
+source "${ZDOTDIR}/aliases"
 
-ZSHRC_LOCAL="$HOME/.zshrc"
+ZSHRC_LOCAL="${HOME}/.zshrc"
 [[ -a $ZSHRC_LOCAL ]] && source $ZSHRC_LOCAL || true

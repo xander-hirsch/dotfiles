@@ -7,5 +7,5 @@ if [[ $OS_CATEGORY == 'macos' ]]; then
 	eval $(${HOMEBREW_PREFIX}/bin/brew shellenv)
 fi
 
-ZPROFILE_LOCAL="$HOME/.zprofile"
+ZPROFILE_LOCAL="${HOME}/.zprofile"
 [[ -a $ZPROFILE_LOCAL ]] && source $ZPROFILE_LOCAL || true

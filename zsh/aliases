@@ -1,7 +1,7 @@
 alias d='dirs -v'
 for index ({1..5}) alias $index="cd +${index}"; unset index
 
-alias g=git
+alias g='git'
 alias gb='git branch'
 alias ga='git add'
 alias gc='git commit'
@@ -12,21 +12,22 @@ alias gl='git log'
 alias glgo='git log --graph --oneline'
 alias gs='git status'
 
-alias m=make
-alias v=nvim
+alias m='make'
+alias v="$EDITOR"
 
 case $OS_CATEGORY in
-	macos)
-		alias b=brew
+	'macos')
+		alias b='brew'
 		alias bi='brew install'
 		alias bo='brew outdated'
 		alias bud='brew update'
 		alias bug='brew upgrade'
 		;;
-	debian)
+	'debian')
 		alias aud='sudo apt update'
 		alias alu='apt list --upgradable'
 		alias aug='sudo apt upgrade -y'
-		alias reboot-required='[ -f /var/run/reboot-required ] && cat /var/run/reboot-required'
+		REBOOT_FILE='/var/run/reboot-required'
+		alias reboot-required='[ -f "$REBOOT_FILE" ] && cat "$REBOOT_FILE"'
 		;;
 esac
