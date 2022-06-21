@@ -16,6 +16,7 @@
 
 - link:
     ~/.zshenv: zsh/zshenv
+    ~/.editrc: editrc
     ~/.config/git: git
     ~/.config/nvim: nvim
 

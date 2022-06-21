@@ -45,6 +45,8 @@ autoload -U "${ZDOTDIR}/git-prompt"
 precmd () { git-prompt }
 
 #####  Environment Variables  #####
+INPUTRC="${HOME}/.dotfiles/inputrc"
+
 if type nvim &> /dev/null ; then
 	export EDITOR='nvim'
 elif type vim &> /dev/null ; then
