@@ -16,7 +16,9 @@ alias m='make'
 alias v="$EDITOR"
 
 alias l='ls --color'
+alias la='ls -A --color'
 alias ll='ls -lh --color'
+alias lla='ls -lAh --color'
 
 case $OS_CATEGORY in
 	'macos')
