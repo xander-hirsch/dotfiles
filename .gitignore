@@ -1,4 +1,5 @@
+zsh/.zcompcache/
+zsh/.zsh_sessions/
 zsh/git-prompt
 zsh/.zcompdump
 zsh/.zsh_history
-zsh/.zsh_sessions/

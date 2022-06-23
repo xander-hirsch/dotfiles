@@ -46,7 +46,7 @@ precmd () { git-prompt }
 
 #####  Environment Variables  #####
 INPUTRC="${HOME}/.dotfiles/inputrc"
-LESS='-FRx4'
+LESS='-FRSx4'
 
 if type nvim &> /dev/null ; then
 	export EDITOR='nvim'
