@@ -1,3 +1,6 @@
+ZSHRC_LOCAL_PRE="${HOME}/.zshrc_pre"
+[[ -a $ZSHRC_LOCAL_PRE ]] && source $ZSHRC_LOCAL_PRE
+
 #####  Keybindings  #####
 export KEYTIMEOUT='1'
 setopt VI
