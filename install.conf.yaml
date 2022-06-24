@@ -17,6 +17,7 @@
 - link:
     ~/.zshenv: zsh/zshenv
     ~/.editrc: editrc
+    ~/.tmux.conf: tmux.conf
     ~/.config/git: git
     ~/.config/nvim: nvim
 
