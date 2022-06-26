@@ -18,5 +18,5 @@ elif [[ $REBOOT_REQUIRED == '0' ]]; then
 fi
 
 if [[ -n "${MESSAGE}" ]]; then
-	printf "Subject:$(hostname)\n${MESSAGE}\n" | msmtp --account "$1" -- "$2"
+	printf "Subject: $(hostname)\n${MESSAGE}" | msmtp --account "$1" -- "$2"
 fi
