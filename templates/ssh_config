@@ -7,14 +7,10 @@ Match host *.xanderhirsch.us,*.local
 	User xh
 	ForwardAgent yes
 
-Match exec "[[ -a ~/.ssh/id_ed25519 ]]"
-	IdentitiesOnly yes
-	IdentityFile ~/.ssh/id_ed25519
-
-Match exec "[[ $(uname -s) == 'Darwin' ]]"
-	UseKeychain yes
-
 Host *
+	UseKeychain yes
+	IdentityFile ~/.ssh/id_ed25519
+	IdentitiesOnly yes
 	AddKeysToAgent yes
 	PreferredAuthentications publickey
 	ControlMaster auto
