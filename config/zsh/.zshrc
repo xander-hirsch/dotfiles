@@ -34,6 +34,7 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:*' list-colors ''
 
 setopt NO_LIST_BEEP
+
 SSH_CMDS='(ssh|ssh-copy-id|scp|sftp|rsync)'
 zstyle ":completion:*:${SSH_CMDS}:*" users root xh $(whoami)
 
@@ -48,8 +49,7 @@ autoload -U "${ZDOTDIR}/git-prompt"
 precmd () { git-prompt }
 
 #####  Environment Variables  #####
-INPUTRC="${HOME}/.dotfiles/inputrc"
-LESS='-FRSx4'
+export LESS='-FRSx4'
 
 if type nvim &> /dev/null ; then
 	export EDITOR='nvim'

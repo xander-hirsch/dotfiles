@@ -15,11 +15,15 @@
       mode: 0755
 
 - link:
-    ~/.zshenv: zsh/zshenv
-    ~/.editrc: editrc
+    ~/.zshenv: config/zsh/zshenv
+    ~/.editrc: home/editrc
+    ~/.inputrc: home/inputrc
     ~/.tmux.conf: tmux.conf
-    ~/.config/git: git
-    ~/.config/nvim: nvim
+    ~/.config:
+      glob: true
+      path: config/*
 
 - shell:
-  - [./fetch-git-prompt.sh > zsh/git-prompt, Fetching the git prompt]
+  -
+    command: ./fetch-git-prompt.sh > config/zsh/git-prompt
+    description: Fetching the git prompt

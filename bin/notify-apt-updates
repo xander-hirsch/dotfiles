@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# notify-apt-update [Email account] [Recipient address]
+
+# Check for updates
+sudo apt-get update && apt-get -s upgrade | grep '^Inst' > /dev/null
+UPDATES_AVAILABLE=$(echo $?)
+
+# Check if restart needed
+test -f /var/run/reboot-required
+REBOOT_REQUIRED=$(echo $?)
+
+if [[ $UPDATES_AVAILABLE == '0' && $REBOOT_REQUIRED == '0' ]]; then
+	MESSAGE='Updates available and reboot required'
+elif [[ $UPDATES_AVAILABLE == '0' ]]; then
+	MESSAGE='Updates available'
+elif [[ $REBOOT_REQUIRED == '0' ]]; then
+	MESSAGE='Reboot required'
+fi
+
+if [[ -n "${MESSAGE}" ]]; then
+	printf "Subject:$(hostname)\n${MESSAGE}\n" | msmtp --account "$1" -- "$2"
+fi
