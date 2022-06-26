@@ -13,6 +13,8 @@
 - create:
     ~/.config:
       mode: 0755
+    ~/.ssh/control:
+      mode: 0700
 
 - link:
     ~/.zshenv: config/zsh/zshenv
