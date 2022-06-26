@@ -107,19 +107,33 @@ cursor_mode() {
 
 cursor_mode
 
+function trim_whitespace {
+	echo -n "$1" | sed -E 's/^[[:space:]]*//' | sed -E 's/[[:space:]]*$//'
+}
+
 USER_SSH_CONFIG="${HOME}/.ssh/config"
 if [[ -a $USER_SSH_CONFIG ]]; then
-	HOST_PREFIX='^[[:space:]]*Host[[:space:]]+'
+	HOST_PREFIX='^[[:space:]]*Host([[:space:]]+|[[:space:]]*=[[:space:]]*)'
 	set -a ssh_hosts
+	typeset -U ssh_hosts
 	for SSH_HOST in \
-		$(grep -E $HOST_PREFIX $USER_SSH_CONFIG | sed -E "s/${HOST_PREFIX}//")
+		$(grep -Ei $HOST_PREFIX $USER_SSH_CONFIG | sed -E "s/${HOST_PREFIX}//i")
 	do
-		if [[ ! ( $SSH_HOST =~ '\*' || -n ${ssh_hosts[(r)${SSH_HOST}]} ) ]]
-		then
-			ssh_hosts+=("@${SSH_HOST}")
+		if [[ ! $SSH_HOST =~ '\*' ]]; then
+			ssh_hosts+=("$(trim_whitespace "@${SSH_HOST}")")
 		fi
 	done
 	zstyle ":completion:*:${SSH_CMDS}:*:my-accounts" users-hosts $ssh_hosts
+
+	USER_PREFIX="$(echo -n "$HOST_PREFIX" | sed 's/Host/User/')"
+	ssh_users=("$(whoami)" 'root')
+	typeset -U ssh_users
+	for SSH_USER in \
+		$(grep -Ei $USER_PREFIX $USER_SSH_CONFIG | sed -E "s/${USER_PREFIX}//i")
+	do
+		ssh_users+="$(trim_whitespace "${SSH_USER}")"
+	done
+	zstyle ":completion:*:${SSH_CMDS}:*" users $ssh_users
 fi
 
 autoload -U compinit && compinit
