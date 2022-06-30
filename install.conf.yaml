@@ -1,6 +1,8 @@
 - defaults:
     clean:
       force: true
+    create:
+      mode: 0755
     link:
       relink: true
 
@@ -11,21 +13,20 @@
       recursive: true
 
 - create:
-    ~/.config:
-      mode: 0755
+    - ~/.config
+    - ~/.local/share/nvim
+- create:
     ~/.ssh/control:
       mode: 0700
 
 - link:
-    ~/.zshenv: config/zsh/zshenv
+    ~/.zshenv: home/zshenv
     ~/.editrc: home/editrc
     ~/.inputrc: home/inputrc
     ~/.tmux.conf: home/tmux.conf
-    ~/.config:
+    ~/.config/:
       glob: true
       path: config/*
 
 - shell:
-  -
-    command: ./fetch-git-prompt.sh > config/zsh/git-prompt
-    description: Fetching the git prompt
+  - [./fetch-git-prompt, Fetching the git prompt]
