@@ -14,7 +14,7 @@
 
 - create:
     - ~/.config
-    - ~/.local/share/nvim
+    - ~/.local/share/nvim/site/pack
 - create:
     ~/.ssh/control:
       mode: 0700
@@ -29,4 +29,4 @@
       path: config/*
 
 - shell:
-  - [./fetch-git-prompt, Fetching the git prompt]
+  - [make external, Fetching external dependencies]
