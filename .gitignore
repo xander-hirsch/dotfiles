@@ -1,4 +1,5 @@
 install
+config/nvim/plugin/
 config/zsh/.zcompcache/
 config/zsh/.zsh_sessions/
 config/zsh/git-prompt

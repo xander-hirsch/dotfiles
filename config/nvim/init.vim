@@ -6,4 +6,8 @@ set softtabstop=4
 set shiftwidth=4
 set noexpandtab
 
+let g:solarized_termcolors=256
+set background=light
+colorscheme solarized
+
 lua require('plugins')

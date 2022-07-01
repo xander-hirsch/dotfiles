@@ -13,7 +13,7 @@ PACKER_GIT_URL = https://github.com/wbthomason/packer.nvim.git
 external: $(GIT_PROMPT) $(PACKER)
 
 $(GIT_PROMPT):
-	curl --output $@ $(GIT_PROMPT_URL)
+	curl $(GIT_PROMPT_URL) | sed 's/PS1=/RPS1=/' > $@
 	echo "__git_ps1 '' ''" >> $@
 
 $(PACKER):
