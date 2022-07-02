@@ -21,13 +21,6 @@ alias ll='ls -lh --color'
 alias lla='ls -lAh --color'
 
 case $OS_CATEGORY in
-	'macos')
-		alias b='brew'
-		alias bi='brew install'
-		alias bo='brew outdated'
-		alias bud='brew update'
-		alias bug='brew upgrade'
-		;;
 	'debian')
 		alias aud='sudo apt update'
 		alias alu='apt list --upgradable'

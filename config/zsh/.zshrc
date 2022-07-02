@@ -62,8 +62,6 @@ export VISUAL="$EDITOR"
 
 if [[ $OS_CATEGORY = 'macos' ]]; then
 	unset SHELL_SESSIONS_DISABLE
-	path=("$(brew --prefix)/opt/coreutils/libexec/gnubin" $path)
-	fpath=("$(brew --prefix)/share/zsh/site-functions" $fpath)
 fi
 
 #####  Changing Directories  #####
