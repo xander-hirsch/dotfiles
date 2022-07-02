@@ -49,7 +49,7 @@ autoload -U "${ZDOTDIR}/git-prompt"
 precmd () { git-prompt }
 
 #####  Environment Variables  #####
-export LESS='-FRSx4'
+export LESS='-RSx4'
 
 if type nvim &> /dev/null ; then
 	export EDITOR='nvim'
