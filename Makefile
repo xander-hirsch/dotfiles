@@ -2,8 +2,11 @@
 all: install
 	@./$<
 
-install:
-	cp dotbot/tools/git-submodule/install $@
+install: dotbot/tools/git-submodule/install
+	cp $< $@
+
+dotbot/tools/git-submodule/install:
+	git submodule update --init
 
 GIT_PROMPT = ~/.config/zsh/git-prompt
 GIT_PROMPT_URL = https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
