@@ -10,4 +10,4 @@ vim.opt.background = 'light'
 vim.api.nvim_command('colorscheme solarized')
 
 require('plugins')
-require('lsp')
+--require('lsp')

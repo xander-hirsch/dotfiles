@@ -32,11 +32,11 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 end
 
-local lsp_flags = {
-  -- This is the default in Nvim 0.7+
-  debounce_text_changes = 150,
-}
-require('lspconfig')['pylsp'].setup{
+--[[
+require('lspconfig').pylsp.setup({
     on_attach = on_attach,
-    flags = lsp_flags,
-}
+	settings = {
+		['pylint.plugins.pylint.enabled'] = true,
+	}
+})
+--]]
