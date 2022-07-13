@@ -21,6 +21,9 @@ alias ll='ls -lh --color'
 alias lla='ls -lAh --color'
 
 case $OS_CATEGORY in
+	'macos')
+		alias nix-upgrade="sudo -i sh -c 'nix-channel --update && nix-env -iA nixpkgs.nix && launchctl remove org.nixos.nix-daemon && launchctl load /Library/LaunchDaemons/org.nixos.nix-daemon.plist'"
+		;;
 	'debian')
 		alias aud='sudo apt update'
 		alias alu='apt list --upgradable'
