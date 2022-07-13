@@ -62,6 +62,9 @@ export VISUAL="$EDITOR"
 
 if [[ $OS_CATEGORY = 'macos' ]]; then
 	unset SHELL_SESSIONS_DISABLE
+	if type brew &>/dev/null; then
+		fpath+=("$(brew --prefix)/share/zsh/site-functions")
+	fi
 fi
 
 #####  Changing Directories  #####
