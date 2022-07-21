@@ -2,17 +2,26 @@ alias d='dirs -v'
 for index ({1..5}) alias $index="cd +${index}"; unset index
 
 alias g='git'
-alias gb='git branch'
 alias ga='git add'
+alias gb='git branch'
 alias gc='git commit'
-alias gco='git checkout'
+alias gch='git checkout'
+alias gcl='git clone'
 alias gd='git diff'
 alias gf='git fetch'
 alias gl='git log'
 alias glog='git log --graph --oneline'
+alias gpu='git pull'
+alias gp='git push'
+alias grb='git rebase --interactive'
+alias gre='git remote'
+alias gr='git restore'
 alias gs='git status'
+alias gsh='git show'
+alias gst='git stash'
 
 alias m='make'
+alias s='ssh'
 alias v="$EDITOR"
 
 alias l='ls --color'
