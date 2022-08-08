@@ -139,7 +139,9 @@ fi
 
 autoload -U compinit && compinit
 
-source "${ZDOTDIR}/aliases"
+DOT_DIR="${HOME}/.dotfiles"
+source "${DOT_DIR}/aliases"
+source "${DOT_DIR}/functions"
 
 ZSHRC_LOCAL="${HOME}/.zshrc"
 [[ -a $ZSHRC_LOCAL ]] && source $ZSHRC_LOCAL || true
