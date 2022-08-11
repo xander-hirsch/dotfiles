@@ -13,3 +13,6 @@ case $(uname -s) in
 		export OS_CATEGORY="$ID_LIKE"
 		;;
 esac
+
+ZSHENV_LOCAL="${HOME}/.zshenv_local"
+[[ -a $ZSHENV_LOCAL ]] && source $ZSHENV_LOCAL || true
