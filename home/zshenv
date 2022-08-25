@@ -3,6 +3,7 @@ export XDG_DATA_HOME="${HOME}/.local/share"
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 typeset -U FPATH fpath
 typeset -U PATH path
+
 case $(uname -s) in
 	'Darwin')
 		export OS_CATEGORY='macos'
@@ -13,6 +14,9 @@ case $(uname -s) in
 		export OS_CATEGORY="$ID_LIKE"
 		;;
 esac
+
+CARGO_ENV="${HOME}/.cargo/env"
+[[ -a $CARGO_ENV ]] && source $CARGO_ENV
 
 ZSHENV_LOCAL="${HOME}/.zshenv_local"
 [[ -a $ZSHENV_LOCAL ]] && source $ZSHENV_LOCAL || true

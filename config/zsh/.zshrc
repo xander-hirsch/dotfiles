@@ -38,6 +38,35 @@ setopt NO_LIST_BEEP
 SSH_CMDS='(ssh|ssh-copy-id|scp|sftp|rsync)'
 zstyle ":completion:*:${SSH_CMDS}:*" users root xh $(whoami)
 
+function trim_whitespace {
+	echo -n "$1" | sed -E 's/^[[:space:]]*//' | sed -E 's/[[:space:]]*$//'
+}
+
+USER_SSH_CONFIG="${HOME}/.ssh/config"
+if [[ -a $USER_SSH_CONFIG ]]; then
+	HOST_PREFIX='^[[:space:]]*Host([[:space:]]+|[[:space:]]*=[[:space:]]*)'
+	set -a ssh_hosts
+	typeset -U ssh_hosts
+	for SSH_HOST in \
+		$(grep -Ei $HOST_PREFIX $USER_SSH_CONFIG | sed -E "s/${HOST_PREFIX}//i")
+	do
+		if [[ ! $SSH_HOST =~ '\*' ]]; then
+			ssh_hosts+=("$(trim_whitespace "@${SSH_HOST}")")
+		fi
+	done
+	zstyle ":completion:*:${SSH_CMDS}:*:my-accounts" users-hosts $ssh_hosts
+
+	USER_PREFIX="$(echo -n "$HOST_PREFIX" | sed 's/Host/User/')"
+	ssh_users=("$(whoami)" 'root')
+	typeset -U ssh_users
+	for SSH_USER in \
+		$(grep -Ei $USER_PREFIX $USER_SSH_CONFIG | sed -E "s/${USER_PREFIX}//i")
+	do
+		ssh_users+="$(trim_whitespace "${SSH_USER}")"
+	done
+	zstyle ":completion:*:${SSH_CMDS}:*" users $ssh_users
+fi
+
 #####  Prompt  #####
 setopt PROMPT_SUBST
 PS1='%B%F{green}%m%f %F{blue}%c%f %(0?..%F{red}%? %f)%% %b'
@@ -59,13 +88,6 @@ else
 	export EDITOR='vi'
 fi
 export VISUAL="$EDITOR"
-
-if [[ $OS_CATEGORY = 'macos' ]]; then
-	unset SHELL_SESSIONS_DISABLE
-	if type brew &>/dev/null; then
-		fpath+=("$(brew --prefix)/share/zsh/site-functions")
-	fi
-fi
 
 #####  Changing Directories  #####
 setopt AUTO_PUSHD
@@ -108,33 +130,21 @@ cursor_mode() {
 
 cursor_mode
 
-function trim_whitespace {
-	echo -n "$1" | sed -E 's/^[[:space:]]*//' | sed -E 's/[[:space:]]*$//'
-}
+#####  macOS  #####
+if [[ $OS_CATEGORY = 'macos' ]]; then
+	unset SHELL_SESSIONS_DISABLE
+	if type brew &>/dev/null; then
+		fpath+=("$(brew --prefix)/share/zsh/site-functions")
+	fi
+fi
 
-USER_SSH_CONFIG="${HOME}/.ssh/config"
-if [[ -a $USER_SSH_CONFIG ]]; then
-	HOST_PREFIX='^[[:space:]]*Host([[:space:]]+|[[:space:]]*=[[:space:]]*)'
-	set -a ssh_hosts
-	typeset -U ssh_hosts
-	for SSH_HOST in \
-		$(grep -Ei $HOST_PREFIX $USER_SSH_CONFIG | sed -E "s/${HOST_PREFIX}//i")
-	do
-		if [[ ! $SSH_HOST =~ '\*' ]]; then
-			ssh_hosts+=("$(trim_whitespace "@${SSH_HOST}")")
-		fi
-	done
-	zstyle ":completion:*:${SSH_CMDS}:*:my-accounts" users-hosts $ssh_hosts
-
-	USER_PREFIX="$(echo -n "$HOST_PREFIX" | sed 's/Host/User/')"
-	ssh_users=("$(whoami)" 'root')
-	typeset -U ssh_users
-	for SSH_USER in \
-		$(grep -Ei $USER_PREFIX $USER_SSH_CONFIG | sed -E "s/${USER_PREFIX}//i")
-	do
-		ssh_users+="$(trim_whitespace "${SSH_USER}")"
-	done
-	zstyle ":completion:*:${SSH_CMDS}:*" users $ssh_users
+#####  pyenv  #####
+PYENV_ROOT="${HOME}/.pyenv"
+if [[ -d $PYENV_ROOT ]]; then
+	export PYENV_ROOT
+	path=("${PYENV_ROOT}/bin" $path)
+	eval "$(pyenv init -)"
+	eval "$(pyenv virtualenv-init -)"
 fi
 
 autoload -U compinit && compinit
