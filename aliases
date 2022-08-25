@@ -10,14 +10,9 @@ alias gd='git diff'
 alias gf='git fetch'
 alias gl='git log --graph'
 alias glog='git log --graph --oneline'
-alias gpu='git pull'
-alias gp='git push'
-alias grb='git rebase'
-alias gre='git remote'
 alias gr='git restore'
 alias gs='git status'
 alias gsh='git show'
-alias gst='git stash'
 
 alias m='make'
 alias s='ssh'
@@ -27,8 +22,16 @@ alias l='ls --color'
 alias la='ls -A --color'
 alias ll='ls -lh --color'
 alias lla='ls -lAh --color'
+alias ls='ls --color'
 
-alias ncu="sudo -i sh  update-c 'nix-channel --update'"
+if [[ -d '/nix' ]]; then
+	alias ncu="sudo -i sh -c 'nix-channel --update'"
+fi
+
+if [[ $(uname -s) == 'Linux' ]]; then
+	REBOOT_FILE='/var/run/reboot-required'
+	alias reboot-required='[ -f "$REBOOT_FILE" ] && cat "$REBOOT_FILE"'
+fi
 
 case $OS_CATEGORY in
 	'macos')
@@ -38,7 +41,5 @@ case $OS_CATEGORY in
 		alias aud='sudo apt update'
 		alias alu='apt list --upgradable'
 		alias aug='sudo apt upgrade -y'
-		REBOOT_FILE='/var/run/reboot-required'
-		alias reboot-required='[ -f "$REBOOT_FILE" ] && cat "$REBOOT_FILE"'
 		;;
 esac
