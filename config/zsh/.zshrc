@@ -153,5 +153,10 @@ DOT_DIR="${HOME}/.dotfiles"
 source "${DOT_DIR}/aliases"
 source "${DOT_DIR}/functions"
 
+LOCAL_BIN="${HOME}/.local/bin"
+if [[ -d $LOCAL_BIN ]]; then
+	path=($LOCAL_BIN $path)
+fi
+
 ZSHRC_LOCAL="${HOME}/.zshrc"
 [[ -a $ZSHRC_LOCAL ]] && source $ZSHRC_LOCAL || true
