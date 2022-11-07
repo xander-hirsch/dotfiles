@@ -36,6 +36,9 @@ fi
 case $OS_CATEGORY in
 	'macos')
 		alias b='brew'
+		alias bud='brew update'
+		alias bo='brew outdated'
+		alias bug='brew upgrade'
 		;;
 	'debian')
 		alias aud='sudo apt update'
