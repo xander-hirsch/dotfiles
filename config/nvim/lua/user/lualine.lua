@@ -5,6 +5,6 @@ end
 
 lualine.setup {
   options = {
-    theme = "solarized",
+    theme = "solarized_light",
   }
 }
