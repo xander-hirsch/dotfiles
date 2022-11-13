@@ -22,7 +22,7 @@ gitsigns.setup {
       vim.keymap.set(mode, "<leader>g" .. lhs, rhs, opts)
     end
 
-    map("n", "p", gitsigns.preview_hunk, "Preview Hunk")
+    map("n", "g", gitsigns.preview_hunk, "Preview Hunk")
     map("n", "j", gitsigns.next_hunk, "Next Hunk")
     map("n", "k", gitsigns.prev_hunk, "Previous Hunk")
     map("n", "s", gitsigns.stage_hunk, "Stage Hunk")

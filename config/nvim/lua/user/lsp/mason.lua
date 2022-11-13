@@ -4,13 +4,14 @@ if not m_status_ok then
 end
 
 mason.setup {
+  PATH = "append",
   ui = {
     icons = {
       package_installed = "✓",
       package_pending = "➜",
-      package_uninstalled = "✗"
-    }
-  }
+      package_uninstalled = "✗",
+    },
+  },
 }
 
 local mlsp_status_ok, mason_lsp = pcall(require, "mason-lspconfig")

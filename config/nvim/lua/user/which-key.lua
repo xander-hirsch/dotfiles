@@ -6,30 +6,52 @@ end
 local opts = { prefix = "<leader>" }
 
 local mappings = {
-  e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-
-  f = { "<cmd>Telescope find_files<cr>", "Find File" },
-
   g = { name = "Git" },
-
   l = { name = "LSP" },
-
-  p = {
-    name = "Packer",
-    c = { "<cmd>PackerCompile<cr>", "Compile" },
-    i = { "<cmd>PackerInstall<cr>", "Install" },
-    s = { "<cmd>PackerSync<cr>", "Sync" },
-    S = { "<cmd>PackerStatus<cr>", "Status" },
-    u = { "<cmd>PackerUpdate<cr>", "Update" },
-  },
-
-  s = {
-    name = "Search",
-    g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
-    b = { "<cmd>Telescope buffers<cr>", "Buffers" },
-    h = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
-  },
+  w = { name = "LSP Workspace"},
+  v = { "<cmd>close<cr>", "Close Window"}
 }
+
+-- Nvim Tree
+local nt_status_ok, nvim_tree = pcall(require, "nvim-tree.api")
+if nt_status_ok then
+  mappings.e = { nvim_tree.tree.toggle, "Explorer" }
+end
+
+-- Delete buffer
+local bd_status_ok, bufdelete = pcall(require, "bufdelete")
+local close_buffer_action
+if bd_status_ok then
+  close_buffer_action = bufdelete.bufdelete
+else
+  close_buffer_action = "<cmd>bdelete<cr>"
+end
+mappings.c = { close_buffer_action, "Delete Buffer" }
+
+-- Packer
+local packer_status_ok, packer = pcall(require, "packer")
+if packer_status_ok then
+  mappings.p = {
+    name = "Packer",
+    c = { packer.compile, "Compile" },
+    i = { packer.install, "Install" },
+    p = { packer.sync, "Sync" },
+    s = { packer.status, "Status" },
+    u = { packer.update, "Update" },
+  }
+end
+
+-- Telescope
+local t_status_ok, telescope = pcall(require, "telescope.builtin")
+if t_status_ok then
+  mappings.f = {
+    name = "Find",
+    f = { telescope.find_files, "Files" },
+    g = { telescope.live_grep, "Live Grep" },
+    b = { telescope.buffers, "Buffers" },
+    h = { telescope.help_tags, "Help Tags" },
+  }
+end
 
 which_key.setup {}
 which_key.register(mappings, opts)
