@@ -8,6 +8,6 @@ if settings_status_ok then
   nlsp_settings.setup {}
 end
 
-require "user.lsp.mason"
+require "user.lsp.setup"
 require("user.lsp.handlers").setup()
 require "user.lsp.null-ls"

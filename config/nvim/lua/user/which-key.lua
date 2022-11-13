@@ -9,6 +9,7 @@ local mappings = {
   g = { name = "Git" },
   l = { name = "LSP" },
   w = { name = "LSP Workspace" },
+  h = { "<cmd>nohlsearch<cr>", "Stop Highlighting" },
   v = { "<cmd>close<cr>", "Close Window" },
 }
 
