@@ -1,5 +1,4 @@
 return require("packer").startup(function(use)
-
   use "wbthomason/packer.nvim"
 
   -- General purpose
@@ -29,8 +28,8 @@ return require("packer").startup(function(use)
   use {
     "nvim-treesitter/nvim-treesitter",
     run = function()
-      local ts_install = require('nvim-treesitter.install')
-      local ts_update = ts_install.update({ with_sync = true })
+      local ts_install = require "nvim-treesitter.install"
+      local ts_update = ts_install.update { with_sync = true }
       ts_update()
     end,
   }
@@ -45,7 +44,7 @@ return require("packer").startup(function(use)
   use "saadparwaiz1/cmp_luasnip"
 
   -- Snippets
-  use {"L3MON4D3/LuaSnip", tag = "v1.1.0"}
+  use { "L3MON4D3/LuaSnip", tag = "v1.1.0" }
   use "rafamadriz/friendly-snippets"
 
   -- LSP
@@ -57,5 +56,4 @@ return require("packer").startup(function(use)
 
   -- Filetype
   use { "LnL7/vim-nix", opt = true }
-
 end)

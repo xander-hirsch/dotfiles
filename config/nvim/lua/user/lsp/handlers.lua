@@ -9,45 +9,45 @@ if status_cmp_ok then
 end
 
 M.setup = function()
-	local signs = {
+  local signs = {
 
-		{ name = "DiagnosticSignError", text = "" },
-		{ name = "DiagnosticSignWarn", text = "" },
-		{ name = "DiagnosticSignHint", text = "" },
-		{ name = "DiagnosticSignInfo", text = "" },
-	}
+    { name = "DiagnosticSignError", text = "" },
+    { name = "DiagnosticSignWarn", text = "" },
+    { name = "DiagnosticSignHint", text = "" },
+    { name = "DiagnosticSignInfo", text = "" },
+  }
 
-	for _, sign in ipairs(signs) do
-		vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-	end
+  for _, sign in ipairs(signs) do
+    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+  end
 
-	local config = {
-		virtual_text = false, -- disable virtual text
-		signs = {
-			active = signs, -- show signs
-		},
-		update_in_insert = true,
-		underline = true,
-		severity_sort = true,
-		float = {
-			focusable = true,
-			style = "minimal",
-			border = "rounded",
-			source = "always",
-			header = "",
-			prefix = "",
-		},
-	}
+  local config = {
+    virtual_text = false, -- disable virtual text
+    signs = {
+      active = signs, -- show signs
+    },
+    update_in_insert = true,
+    underline = true,
+    severity_sort = true,
+    float = {
+      focusable = true,
+      style = "minimal",
+      border = "rounded",
+      source = "always",
+      header = "",
+      prefix = "",
+    },
+  }
 
-	vim.diagnostic.config(config)
+  vim.diagnostic.config(config)
 
-	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-		border = "rounded",
-	})
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    border = "rounded",
+  })
 
-	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-		border = "rounded",
-	})
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+    border = "rounded",
+  })
 end
 
 local function keymap(bufnr, mode, lhs, rhs, desc)
@@ -74,28 +74,28 @@ local function lsp_keymaps(bufnr)
   else
     references_action = vim.lsp.buf.references
   end
-	keymap(bufnr, "n", "gD", vim.lsp.buf.declaration, "Go to declaration")
-	keymap(bufnr, "n", "gd", vim.lsp.buf.definition, "Go to definition")
-	keymap(bufnr, "n", "K", vim.lsp.buf.hover, "Hover")
-	keymap(bufnr, "n", "gI", vim.lsp.buf.implementation, "Go to implementation")
-	keymap(bufnr, "n", "gr", references_action, "Find references")
-	keymap(bufnr, "n", "gl", vim.diagnostic.open_float, "Open diagnostic float")
-	keymap(bufnr, "n", "gj", vim.diagnostic.goto_next, "Go to next diagnostic")
-	keymap(bufnr, "n", "gk", vim.diagnostic.goto_prev, "Go to previous diagnostic")
-	keymap(bufnr, "n", "<leader>li", "<cmd>LspInfo<cr>", "LSP Info")
-	keymap(bufnr, "n", "<leader>lf", vim.lsp.buf.format, "Format buffer")
-	keymap(bufnr, "n", "<leader>la", vim.lsp.buf.code_action, "Code action")
-	keymap(bufnr, "n", "<leader>lr", vim.lsp.buf.rename, "Rename symbol")
-	keymap(bufnr, "n", "<leader>ls", vim.lsp.buf.signature_help, "Signature help")
-	keymap(bufnr, "i", "<C-j>", vim.lsp.buf.signature_help, "Signature help")
-	keymap(bufnr, "n", "<leader>lq", vim.diagnostic.setloclist, "Add diagnostics to location list")
-	keymap(bufnr, "n", "<leader>wa", vim.lsp.buf.add_workspace_folder, "Add workspace folder")
-	keymap(bufnr, "n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, "Remove workspace folder")
-	keymap(bufnr, "n", "<leader>wl", list_workspace_folders, "List workspace folders")
+  keymap(bufnr, "n", "gD", vim.lsp.buf.declaration, "Go to declaration")
+  keymap(bufnr, "n", "gd", vim.lsp.buf.definition, "Go to definition")
+  keymap(bufnr, "n", "K", vim.lsp.buf.hover, "Hover")
+  keymap(bufnr, "n", "gI", vim.lsp.buf.implementation, "Go to implementation")
+  keymap(bufnr, "n", "gr", references_action, "Find references")
+  keymap(bufnr, "n", "gl", vim.diagnostic.open_float, "Open diagnostic float")
+  keymap(bufnr, "n", "gj", vim.diagnostic.goto_next, "Go to next diagnostic")
+  keymap(bufnr, "n", "gk", vim.diagnostic.goto_prev, "Go to previous diagnostic")
+  keymap(bufnr, "n", "<leader>li", "<cmd>LspInfo<cr>", "LSP Info")
+  keymap(bufnr, "n", "<leader>lf", vim.lsp.buf.format, "Format buffer")
+  keymap(bufnr, "n", "<leader>la", vim.lsp.buf.code_action, "Code action")
+  keymap(bufnr, "n", "<leader>lr", vim.lsp.buf.rename, "Rename symbol")
+  keymap(bufnr, "n", "<leader>ls", vim.lsp.buf.signature_help, "Signature help")
+  keymap(bufnr, "i", "<C-j>", vim.lsp.buf.signature_help, "Signature help")
+  keymap(bufnr, "n", "<leader>lq", vim.diagnostic.setloclist, "Add diagnostics to location list")
+  keymap(bufnr, "n", "<leader>wa", vim.lsp.buf.add_workspace_folder, "Add workspace folder")
+  keymap(bufnr, "n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, "Remove workspace folder")
+  keymap(bufnr, "n", "<leader>wl", list_workspace_folders, "List workspace folders")
 end
 
 M.on_attach = function(client, bufnr)
-	lsp_keymaps(bufnr)
+  lsp_keymaps(bufnr)
 end
 
 return M

@@ -8,8 +8,8 @@ local opts = { prefix = "<leader>" }
 local mappings = {
   g = { name = "Git" },
   l = { name = "LSP" },
-  w = { name = "LSP Workspace"},
-  v = { "<cmd>close<cr>", "Close Window"}
+  w = { name = "LSP Workspace" },
+  v = { "<cmd>close<cr>", "Close Window" },
 }
 
 -- Nvim Tree

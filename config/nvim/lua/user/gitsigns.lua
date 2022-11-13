@@ -36,6 +36,5 @@ gitsigns.setup {
       map("n", "b", telescope.git_branches, "Branches")
       map("n", "c", telescope.git_commits, "Commits")
     end
-
-  end
+  end,
 }

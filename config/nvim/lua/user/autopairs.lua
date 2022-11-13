@@ -3,7 +3,7 @@ if not status_ok then
   return
 end
 
-npairs.setup({
+npairs.setup {
   check_ts = true,
   enable_check_bracket_line = false,
   fast_wrap = {
@@ -16,12 +16,12 @@ npairs.setup({
     highlight = "Search",
     highlight_grey = "Comment",
   },
-})
+}
 
 local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then
   return
 end
 
-local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+local cmp_autopairs = require "nvim-autopairs.completion.cmp"
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
