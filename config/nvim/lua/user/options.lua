@@ -13,9 +13,11 @@ local options = {
 
   ignorecase = true,
 
-  termguicolors = true,
+  background = "light",
 }
 
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
+
+vim.cmd "colorscheme solarized"

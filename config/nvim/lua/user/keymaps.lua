@@ -7,8 +7,6 @@ local function keymap(mode, lhs, rhs, desc)
 end
 
 -- Remap leader and local leader keys
-keymap("", "<Space", "<Nop>")
-keymap("", ";", "<Nop>")
 vim.g.mapleader = " "
 vim.g.maplocalleader = ";"
 

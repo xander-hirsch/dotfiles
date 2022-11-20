@@ -4,14 +4,14 @@ return require("packer").startup(function(use)
   -- General purpose
   use "lewis6991/gitsigns.nvim"
   use "folke/which-key.nvim"
-  use "shaunsingh/solarized.nvim"
   use "famiu/bufdelete.nvim"
   use {
     "nvim-telescope/telescope.nvim",
     requires = { "nvim-lua/plenary.nvim", "BurntSushi/ripgrep" },
   }
   use {
-    "nvim-lualine/lualine.nvim",
+    "xander-hirsch/lualine.nvim",
+    branch = "solarized_legible",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
   }
   use {
@@ -53,5 +53,10 @@ return require("packer").startup(function(use)
   use "jose-elias-alvarez/null-ls.nvim"
 
   -- Filetype
-  use { "LnL7/vim-nix", opt = true }
+  use {
+    "lervag/vimtex",
+    setup = function()
+      require "user.vimtex"
+    end,
+  }
 end)

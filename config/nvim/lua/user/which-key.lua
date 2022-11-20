@@ -34,10 +34,10 @@ local packer_status_ok, packer = pcall(require, "packer")
 if packer_status_ok then
   mappings.p = {
     name = "Packer",
-    c = { packer.compile, "Compile" },
+    p = { packer.compile, "Compile" },
     i = { packer.install, "Install" },
-    p = { packer.sync, "Sync" },
-    s = { packer.status, "Status" },
+    S = { packer.status, "Status" },
+    s = { packer.sync, "Sync" },
     u = { packer.update, "Update" },
   }
 end
@@ -54,5 +54,8 @@ if t_status_ok then
   }
 end
 
-which_key.setup {}
+which_key.setup {
+  window = { border = "single" },
+}
 which_key.register(mappings, opts)
+-- which_key.register({}, { prefix = "<localleader>"})

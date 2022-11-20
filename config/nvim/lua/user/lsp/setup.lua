@@ -1,18 +1,23 @@
+local function is_neovim_dir(workspace_dir)
+  local function check_dir(std_path_name)
+    -- Find the physical config path
+    local std_path = vim.fn.stdpath(std_path_name)
+    local realpath_prog = io.popen("realpath '" .. std_path .. "'")
+    if realpath_prog == nil then
+      return false
+    end
+    local physical_std_path = realpath_prog:read "*a"
+    if physical_std_path == nil then
+      return false
+    end
+    return workspace_dir == string.sub(physical_std_path, 1, -2)
+  end
+
+  return check_dir "config" or check_dir "data"
+end
+
 local function neovim_init(client)
-  local path = client.workspace_folders[1].name
-
-  -- Find the physical config path
-  local config_path = vim.fn.stdpath "config"
-  local realpath_prog = io.popen("realpath '" .. config_path .. "'")
-  if realpath_prog == nil then
-    return true
-  end
-  local physical_config_path = realpath_prog:read "*a"
-  if physical_config_path == nil then
-    return true
-  end
-
-  if path == string.sub(physical_config_path, 1, -2) then
+  if is_neovim_dir(client.workspace_folders[1].name) then
     client.config.settings = {
       Lua = {
         runtime = { version = "LuaJIT" },
@@ -34,6 +39,7 @@ end
 local servers = {
   pyright = {},
   sumneko_lua = { on_init = neovim_init },
+  texlab = {},
 }
 
 local lspconfig = require "lspconfig"

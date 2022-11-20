@@ -5,22 +5,19 @@ end
 
 local snip_status_ok, luasnip = pcall(require, "luasnip")
 
-local check_backspace = function()
-  local col = vim.fn.col "." - 1
-  return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+local function has_words_before()
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0
+    and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
 end
 
 local function super_tab(fallback)
   if cmp.visible() then
     cmp.select_next_item()
-  elseif snip_status_ok then
-    if luasnip.expandable() then
-      luasnip.expand()
-    elseif luasnip.expand_or_jumpable() then
-      luasnip.expand_or_jump()
-    end
-  elseif check_backspace() then
-    fallback()
+  elseif snip_status_ok and luasnip.expand_or_jumpable() then
+    luasnip.expand_or_jump()
+  elseif has_words_before() then
+    cmp.complete()
   else
     fallback()
   end
@@ -65,6 +62,9 @@ local kind_icons = {
 }
 
 local S = {
+  completion = {
+    keyword_length = 2,
+  },
   mapping = {
     ["<C-k>"] = cmp.mapping.select_prev_item(),
     ["<C-j>"] = cmp.mapping.select_next_item(),

@@ -8,7 +8,7 @@ configs.setup {
   ignore_install = { "" },
   highlight = {
     enable = true,
-    disable = { "" },
+    disable = { "tex" },
   },
   indent = { enable = true, disable = { "" } },
 }
