@@ -1,4 +1,24 @@
-return require("packer").startup(function(use)
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+  return
+end
+
+vim.cmd [[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  augroup end
+]]
+
+packer.init {
+  display = {
+    open_fn = function()
+      return require("packer.util").float { border = "rounded" }
+    end,
+  },
+}
+
+return packer.startup(function(use)
   use "wbthomason/packer.nvim"
 
   -- General purpose
@@ -33,6 +53,7 @@ return require("packer").startup(function(use)
       ts_update()
     end,
   }
+  use "nvim-treesitter/playground"
   use "windwp/nvim-autopairs"
   use "numToStr/Comment.nvim"
 
@@ -51,6 +72,7 @@ return require("packer").startup(function(use)
   use "neovim/nvim-lspconfig"
   use "tamago324/nlsp-settings.nvim"
   use "jose-elias-alvarez/null-ls.nvim"
+  use "RRethy/vim-illuminate"
 
   -- Filetype
   use {

@@ -27,7 +27,7 @@ telescope.setup {
       },
       flex = {
         flip_columns = 120,
-        flip_lines = 50,
+        flip_lines = 40,
       },
     },
   },
