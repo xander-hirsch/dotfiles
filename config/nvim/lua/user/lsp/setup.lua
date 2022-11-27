@@ -37,6 +37,7 @@ local function neovim_init(client)
 end
 
 local servers = {
+  clangd = {},
   pyright = {},
   sumneko_lua = { on_init = neovim_init },
   texlab = {},
