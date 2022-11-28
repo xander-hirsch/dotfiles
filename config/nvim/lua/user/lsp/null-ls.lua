@@ -25,6 +25,10 @@ null_ls.setup {
         diagnostic.severity = vim.diagnostic.severity.INFO
       end,
     },
-    diagnostics.pylint,
+    diagnostics.pylint.with {
+      condition = function(utils)
+        return utils.root_has_file { "pyproject.toml" }
+      end,
+    },
   },
 }
