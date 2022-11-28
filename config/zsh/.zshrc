@@ -1,10 +1,6 @@
 ZSHRC_LOCAL_PRE="${HOME}/.zshrc_pre"
 [[ -a $ZSHRC_LOCAL_PRE ]] && source $ZSHRC_LOCAL_PRE
 
-DOT_DIR="${HOME}/.dotfiles"
-source "${DOT_DIR}/aliases"
-source "${DOT_DIR}/functions"
-
 LOCAL_BIN="${HOME}/.local/bin"
 if [[ -d $LOCAL_BIN ]]; then
 	path=($LOCAL_BIN $path)
@@ -21,6 +17,10 @@ for SOURCE in $SOURCES
 do
 	source "${ZDOTDIR}/${SOURCE}.zsh"
 done
+
+DOT_DIR="${HOME}/.dotfiles"
+source "${DOT_DIR}/aliases"
+source "${DOT_DIR}/functions"
 
 autoload -U compinit && compinit
 
