@@ -19,6 +19,12 @@ if nt_status_ok then
   mappings.e = { nvim_tree.tree.toggle, "Explorer" }
 end
 
+-- Symbols Outline
+local symbols_status_ok, symbols_outline = pcall(require, "symbols-outline")
+if symbols_status_ok then
+  mappings.s = { "<cmd>SymbolsOutline<cr>", "Symbols" }
+end
+
 -- Delete buffer
 local bd_status_ok, bufdelete = pcall(require, "bufdelete")
 local close_buffer_action
@@ -34,10 +40,10 @@ local packer_status_ok, packer = pcall(require, "packer")
 if packer_status_ok then
   mappings.p = {
     name = "Packer",
-    p = { packer.compile, "Compile" },
+    c = { packer.compile, "Compile" },
     i = { packer.install, "Install" },
     S = { packer.status, "Status" },
-    s = { packer.sync, "Sync" },
+    p = { packer.sync, "Sync" },
     u = { packer.update, "Update" },
   }
 end

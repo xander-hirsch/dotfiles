@@ -72,6 +72,7 @@ return packer.startup(function(use)
   use "neovim/nvim-lspconfig"
   use "tamago324/nlsp-settings.nvim"
   use "jose-elias-alvarez/null-ls.nvim"
+  use "simrat39/symbols-outline.nvim"
   use "RRethy/vim-illuminate"
 
   -- Filetype
