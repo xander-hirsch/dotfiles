@@ -51,6 +51,12 @@ if t_status_ok then
     g = { telescope.live_grep, "Live Grep" },
     b = { telescope.buffers, "Buffers" },
     h = { telescope.help_tags, "Help Tags" },
+    m = {
+      function()
+        telescope.man_pages { sections = { "1", "2", "3" } }
+      end,
+      "Man Pages",
+    },
   }
 end
 
