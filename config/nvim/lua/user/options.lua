@@ -11,6 +11,7 @@ local options = {
   splitbelow = true,
   splitright = true,
 
+  hlsearch = false,
   ignorecase = true,
 
   background = "light",

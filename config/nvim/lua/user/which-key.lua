@@ -10,6 +10,12 @@ local mappings = {
   l = { name = "LSP" },
   w = { name = "LSP Workspace" },
   h = { "<cmd>nohlsearch<cr>", "Stop Highlighting" },
+  H = {
+    function()
+      vim.opt.hlsearch = not vim.opt.hlsearch:get()
+    end,
+    "Toggle Highlighting",
+  },
   c = { "<cmd>close<cr>", "Close Window" },
 }
 
