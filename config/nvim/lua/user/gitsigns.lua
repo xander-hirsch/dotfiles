@@ -9,8 +9,10 @@ gitsigns.setup {
     change = { text = "▌" },
     delete = { text = "▃" },
     topdelete = { text = "" },
-    changedelete = { text = "▌" },
+    changedelete = { text = "~" },
   },
+
+  current_line_blame_opts = { delay = 500 },
 
   on_attach = function(bufnr)
     local function map(mode, lhs, rhs, desc)
@@ -23,6 +25,8 @@ gitsigns.setup {
     end
 
     map("n", "g", gitsigns.preview_hunk, "Preview Hunk")
+    map("n", "l", gitsigns.blame_line, "Blame line")
+    map("n", "L", gitsigns.toggle_current_line_blame, "Toggle blame")
     map("n", "j", gitsigns.next_hunk, "Next Hunk")
     map("n", "k", gitsigns.prev_hunk, "Previous Hunk")
     map("n", "s", gitsigns.stage_hunk, "Stage Hunk")

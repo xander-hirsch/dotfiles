@@ -10,19 +10,13 @@ local mappings = {
   l = { name = "LSP" },
   w = { name = "LSP Workspace" },
   h = { "<cmd>nohlsearch<cr>", "Stop Highlighting" },
-  v = { "<cmd>close<cr>", "Close Window" },
+  c = { "<cmd>close<cr>", "Close Window" },
 }
 
 -- Nvim Tree
 local nt_status_ok, nvim_tree = pcall(require, "nvim-tree.api")
 if nt_status_ok then
   mappings.e = { nvim_tree.tree.toggle, "Explorer" }
-end
-
--- Symbols Outline
-local symbols_status_ok, symbols_outline = pcall(require, "symbols-outline")
-if symbols_status_ok then
-  mappings.s = { "<cmd>SymbolsOutline<cr>", "Symbols" }
 end
 
 -- Delete buffer
@@ -33,7 +27,7 @@ if bd_status_ok then
 else
   close_buffer_action = "<cmd>bdelete<cr>"
 end
-mappings.c = { close_buffer_action, "Delete Buffer" }
+mappings.d = { close_buffer_action, "Delete Buffer" }
 
 -- Packer
 local packer_status_ok, packer = pcall(require, "packer")
@@ -64,4 +58,3 @@ which_key.setup {
   window = { border = "single" },
 }
 which_key.register(mappings, opts)
--- which_key.register({}, { prefix = "<localleader>"})

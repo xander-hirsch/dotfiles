@@ -68,12 +68,18 @@ local function lsp_keymaps(bufnr)
   local references_action
   if t_status_ok then
     keymap(bufnr, "n", "<leader>ld", telescope.diagnostics, "Diagnostics")
-    keymap(bufnr, "n", "<leader>lu", telescope.lsp_document_symbols, "Document symbols")
-    keymap(bufnr, "n", "<leader>ly", telescope.lsp_workspace_symbols, "Workspace symbols")
+    keymap(bufnr, "n", "<leader>s", telescope.lsp_document_symbols, "Document symbols")
+    keymap(bufnr, "n", "<leader>S", telescope.lsp_workspace_symbols, "Workspace symbols")
     references_action = telescope.lsp_references
   else
     references_action = vim.lsp.buf.references
   end
+
+  local symbols_status_ok, _ = pcall(require, "symbols-outline")
+  if symbols_status_ok then
+    keymap(bufnr, "n", "<leader>ly", "<cmd>SymbolsOutline<cr>", "Symbols outline")
+  end
+
   keymap(bufnr, "n", "gD", vim.lsp.buf.declaration, "Go to declaration")
   keymap(bufnr, "n", "gd", vim.lsp.buf.definition, "Go to definition")
   keymap(bufnr, "n", "K", vim.lsp.buf.hover, "Hover")

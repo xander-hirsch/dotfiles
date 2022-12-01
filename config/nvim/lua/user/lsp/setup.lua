@@ -47,8 +47,10 @@ local lspconfig = require "lspconfig"
 local handlers = require "user.lsp.handlers"
 
 for server, options in pairs(servers) do
-  local opts = options
-  opts.on_attach = handlers.on_attach
-  opts.capabilities = handlers.capabilities
-  lspconfig[server].setup(opts)
+  if vim.fn.executable(lspconfig[server].document_config.default_config.cmd[1]) == 1 then
+    local opts = options
+    opts.on_attach = handlers.on_attach
+    opts.capabilities = handlers.capabilities
+    lspconfig[server].setup(opts)
+  end
 end
