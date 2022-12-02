@@ -5,13 +5,15 @@ local options = {
   expandtab = false,
 
   number = true,
+  cursorline = true,
+  cursorlineopt = "number",
   scrolloff = 8,
   sidescrolloff = 8,
 
   splitbelow = true,
   splitright = true,
 
-  hlsearch = false,
+  hlsearch = true,
   ignorecase = true,
 
   background = "light",

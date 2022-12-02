@@ -7,7 +7,7 @@ npairs.setup {
   check_ts = true,
   enable_check_bracket_line = false,
   fast_wrap = {
-    map = "<M-e>",
+    map = "<C-j>",
     chars = { "{", "[", "(", '"', "'" },
     pattern = [=[[%'%"%)%>%]%)%}%,]]=],
     end_key = "$",

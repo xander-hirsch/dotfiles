@@ -6,15 +6,23 @@ end
 local opts = { prefix = "<leader>" }
 
 local mappings = {
+  -- Groups
   g = { name = "Git" },
   l = { name = "LSP" },
   w = { name = "LSP Workspace" },
+  -- First level keybindings
   h = { "<cmd>nohlsearch<cr>", "Stop Highlighting" },
   H = {
     function()
       vim.opt.hlsearch = not vim.opt.hlsearch:get()
     end,
     "Toggle Highlighting",
+  },
+  n = {
+    function()
+      vim.opt.relativenumber = not vim.opt.relativenumber:get()
+    end,
+    "Toggle Line Numbering",
   },
   c = { "<cmd>close<cr>", "Close Window" },
 }
@@ -51,11 +59,11 @@ end
 -- Telescope
 local t_status_ok, telescope = pcall(require, "telescope.builtin")
 if t_status_ok then
+  mappings.b = { telescope.buffers, "Buffers" }
   mappings.f = {
     name = "Find",
     f = { telescope.find_files, "Files" },
     g = { telescope.live_grep, "Live Grep" },
-    b = { telescope.buffers, "Buffers" },
     h = { telescope.help_tags, "Help Tags" },
     m = {
       function()

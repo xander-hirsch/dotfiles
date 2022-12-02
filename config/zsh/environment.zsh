@@ -9,7 +9,6 @@ else
 fi
 export VISUAL="$EDITOR"
 
-
 setopt PROMPT_SUBST
 PS1='%B%F{green}%m%f %F{blue}%c%f %(0?..%F{red}%? %f)%% %b'
 export PS1_NO_HOSTNAME=$(echo $PS1 | sed 's/%F{green}%m%f //')
@@ -18,3 +17,8 @@ export GIT_PS1_SHOWCOLORHINTS='1'
 export GIT_PS1_SHOWUPSTREAM=auto
 autoload -U "${ZDOTDIR}/git-prompt"
 precmd () { git-prompt }
+
+hash -d dotfiles="${HOME}/.dotfiles"
+hash -d config="${HOME}/.config"
+hash -d nvim="${HOME}/.config/nvim"
+hash -d zsh="${HOME}/.config/zsh"
