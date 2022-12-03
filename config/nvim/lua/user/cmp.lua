@@ -63,7 +63,7 @@ local kind_icons = {
 
 local S = {
   completion = {
-    keyword_length = 3,
+    keyword_length = 2,
   },
   mapping = {
     ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),

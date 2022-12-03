@@ -5,6 +5,7 @@ local options = {
   expandtab = false,
 
   number = true,
+  relativenumber = true,
   cursorline = true,
   cursorlineopt = "number",
   scrolloff = 8,
