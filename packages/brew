@@ -1,4 +1,5 @@
 bat
+chezmoi
 coreutils
 diffutils
 dos2unix
@@ -15,7 +16,6 @@ lua-language-server
 luarocks
 make
 neovim
-rclone
 ripgrep
 tig
 wget
