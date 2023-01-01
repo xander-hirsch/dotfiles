@@ -1,0 +1,13 @@
+defaults
+
+account icloud
+tls on
+host smtp.mail.me.com
+port 587
+auth on
+user {{ .msmtpAddress }}
+password {{ .msmtpPassword }}
+from {{ .msmtpAddress }}
+domain {{ .msmtpDomain }}
+
+account default : icloud

@@ -1,0 +1,14 @@
+{{ if lookPath "delta" -}}
+[core]
+	pager = delta
+[delta]
+	light = true
+	syntax-theme = "Solarized (light)"
+{{- end }}
+[init]
+	defaultBranch = {{ .defaultBranch }}
+[pull]
+	ff = only
+[user]
+	email = {{ .email }}
+	name = Xander Hirsch

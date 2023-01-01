@@ -1,0 +1,3 @@
+{{- if not (lookPath "msmtp") }}
+.config/msmtp/config
+{{- end }}

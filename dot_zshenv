@@ -1,22 +1,41 @@
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_DATA_HOME="${HOME}/.local/share"
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
+
 typeset -U FPATH fpath
 typeset -U PATH path
 
-case $(uname -s) in
-	'Darwin')
-		export OS_CATEGORY='macos'
-		export SHELL_SESSIONS_DISABLE='1'
-		;;
-	'Linux')
-		eval $(cat /etc/os-release | grep 'ID_LIKE=')
-		export OS_CATEGORY="$ID_LIKE"
-		;;
-esac
+if [[ $(uname -s) == 'Darwin' ]]; then
+	export SHELL_SESSIONS_DISABLE=1
+fi
 
+#####  pyenv  #####
+PYENV_ROOT="${HOME}/.pyenv"
+if [[ -d $PYENV_ROOT ]]; then
+	export PYENV_ROOT
+	path=("${PYENV_ROOT}/bin" $path)
+	eval "$(pyenv init -)"
+	eval "$(pyenv virtualenv-init -)"
+fi
+
+#####  nvm  #####
+NVM_DIR="${HOME}/.config/nvm"
+if [[ -d $NVM_DIR ]]; then
+	export NVM_DIR
+	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+fi
+
+#####  cargo  #####
 CARGO_ENV="${HOME}/.cargo/env"
-[[ -a $CARGO_ENV ]] && source $CARGO_ENV
+[[ -s $CARGO_ENV ]] && source $CARGO_ENV
+
+##### local binaries  #####
+LOCAL_BIN="${HOME}/.local/bin"
+if [[ -d $LOCAL_BIN ]]; then
+	path=($LOCAL_BIN $path)
+fi
 
 ZSHENV_LOCAL="${HOME}/.zshenv_local"
-[[ -a $ZSHENV_LOCAL ]] && source $ZSHENV_LOCAL || true
+[[ -s $ZSHENV_LOCAL ]] && source $ZSHENV_LOCAL || true
+

@@ -9,16 +9,21 @@ else
 fi
 export VISUAL="$EDITOR"
 
+#####  prompt  #####
 setopt PROMPT_SUBST
 PS1='%B%F{green}%m%f %F{blue}%c%f %(0?..%F{red}%? %f)%% %b'
-export PS1_NO_HOSTNAME=$(echo $PS1 | sed 's/%F{green}%m%f //')
+if [[ $(hostname -s) == 'Xanders-MacBook-Air' ]]; then
+	PS1=$(echo $PS1 | sed 's/%F{green}%m%f //')
+fi
+
+#####  rhs git prompt  #####
 export GIT_PS1_SHOWDIRTYSTATE='1'
 export GIT_PS1_SHOWCOLORHINTS='1'
 export GIT_PS1_SHOWUPSTREAM=auto
-autoload -U "${ZDOTDIR}/git-prompt"
-precmd () { git-prompt }
+source "${ZDOTDIR}/git-prompt.zsh"
+precmd () { __git_ps1 '' '' }
 
-hash -d dotfiles="${HOME}/.dotfiles"
+CHEZMOI=$(chezmoi source-path)
 hash -d config="${HOME}/.config"
-hash -d nvim="${HOME}/.config/nvim"
-hash -d zsh="${HOME}/.config/zsh"
+hash -d nvim="${CHEZMOI}/private_dot_config/nvim"
+hash -d zsh="${CHEZMOI}/private_dot_config/zsh"

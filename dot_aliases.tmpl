@@ -1,15 +1,15 @@
 alias d='dirs -v'
-for index ({1..5}) alias $index="cd +${index}"; unset index
+
+alias c='chezmoi'
 
 alias g='git'
 alias ga='git add'
 alias gb='git branch'
 alias gc='git commit'
-alias gco='git checkout'
 alias gd='git diff'
 alias gf='git fetch'
 alias gl='git log --graph'
-alias glog='git log --graph --oneline'
+alias glo='git log --graph --oneline'
 alias gr='git restore'
 alias gs='git status'
 alias gsh='git show'
@@ -18,31 +18,40 @@ alias m='make'
 alias s='ssh'
 alias v="$EDITOR"
 
+{{ if lookPath "exa" -}}
+alias l='exa'
+alias la='exa -a'
+alias ll='exa -l'
+alias lla='exa -al'
+{{ else }}
 alias l='ls --color'
 alias la='ls -A --color'
 alias ll='ls -lh --color'
 alias lla='ls -lAh --color'
 alias ls='ls --color'
+{{- end }}
 
-if [[ -d '/nix' ]]; then
-	alias ncu="sudo -i sh -c 'nix-channel --update'"
-fi
+{{ if lookPath "cspell" -}}
+alias cs='cspell suggestions'
+{{- end }}
 
-if [[ $(uname -s) == 'Linux' ]]; then
-	REBOOT_FILE='/var/run/reboot-required'
-	alias reboot-required='[ -f "$REBOOT_FILE" ] && cat "$REBOOT_FILE"'
-fi
+{{ if eq .chezmoi.os "linux" -}}
+REBOOT_FILE='/var/run/reboot-required'
+alias reboot-required='[ -f "$REBOOT_FILE" ] && cat "$REBOOT_FILE"'
 
-case $OS_CATEGORY in
-	'macos')
-		alias b='brew'
-		alias bud='brew update'
-		alias bo='brew outdated'
-		alias bug='brew upgrade'
-		;;
-	'debian')
-		alias aud='sudo apt update'
-		alias alu='apt list --upgradable'
-		alias aug='sudo apt upgrade -y'
-		;;
-esac
+{{ if eq .chezmoid.osRelease.idLike "debian" -}}
+alias aud='sudo apt update'
+alias alu='apt list --upgradable'
+alias aug='sudo apt upgrade -y'
+{{- end -}}
+
+{{ else if eq .chezmoi.os "darwin" -}}
+alias b='brew'
+alias bud='brew update'
+alias bo='brew outdated'
+alias bug='brew upgrade'
+
+alias cp='cp -c'
+
+{{- end }}
+

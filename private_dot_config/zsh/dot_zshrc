@@ -1,26 +1,27 @@
 ZSHRC_LOCAL_PRE="${HOME}/.zshrc_pre"
 [[ -a $ZSHRC_LOCAL_PRE ]] && source $ZSHRC_LOCAL_PRE
 
-LOCAL_BIN="${HOME}/.local/bin"
-if [[ -d $LOCAL_BIN ]]; then
-	path=($LOCAL_BIN $path)
-fi
-
 SOURCES=(
 	options
 	keybindings
 	environment
 	completion
-	tools
+	functions
 )
 for SOURCE in $SOURCES
 do
 	source "${ZDOTDIR}/${SOURCE}.zsh"
 done
 
-DOT_DIR="${HOME}/.dotfiles"
-source "${DOT_DIR}/aliases"
-source "${DOT_DIR}/functions"
+source "${HOME}/.aliases"
+
+#####  macOS  #####
+if [[ $(uname -s) == 'Darwin' ]]; then
+	unset SHELL_SESSIONS_DISABLE
+	if type brew &>/dev/null; then
+		fpath=("$(brew --prefix)/share/zsh/site-functions" $fpath)
+	fi
+fi
 
 autoload -U compinit && compinit
 
