@@ -9,7 +9,7 @@ gitsigns.setup {
     change = { text = "▌" },
     delete = { text = "▃" },
     topdelete = { text = "" },
-    changedelete = { text = "~" },
+    changedelete = { text = "▌" },
   },
 
   current_line_blame_opts = { delay = 500 },
