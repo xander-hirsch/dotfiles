@@ -38,8 +38,7 @@ return packer.startup(function(use)
     requires = { "nvim-lua/plenary.nvim", "BurntSushi/ripgrep" },
   }
   use {
-    "xander-hirsch/lualine.nvim",
-    branch = "solarized_legible",
+    "nvim-lualine/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
   }
   use {

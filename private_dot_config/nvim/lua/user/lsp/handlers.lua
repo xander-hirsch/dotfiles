@@ -70,7 +70,7 @@ local function lsp_keymaps(bufnr)
 
   local symbols_status_ok, _ = pcall(require, "symbols-outline")
   if symbols_status_ok then
-    keymap(bufnr, "n", "<leader>ly", "<cmd>SymbolsOutline<cr>", "Symbols outline")
+    keymap("n", "<leader>ly", "<cmd>SymbolsOutline<cr>", "Symbols outline", bufnr)
   end
 
   keymap("n", "gD", vim.lsp.buf.declaration, "Go to declaration", bufnr)
