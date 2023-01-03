@@ -1,10 +1,8 @@
 {{- $email := promptStringOnce . "email" "Email address" "xh@xanderhirsch.us" -}}
 {{- $defaultBranch := promptStringOnce . "defaultBranch" "Default git branch" "main" -}}
 
-mode = "symlink"
-
 [data]
-    email = {{ $email | quote }}
+  email = {{ $email | quote }}
 	defaultBranch = {{ $defaultBranch | quote }}
 	msmtpAddress = ""
 	msmtpPassword = ""

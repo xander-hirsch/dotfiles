@@ -14,3 +14,10 @@ require "user.comment"
 require "user.illuminate"
 require "user.cmp"
 require "user.lsp"
+
+vim.cmd [[
+  augroup chezmoi_apply
+    autocmd!
+    autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
+  augroup end
+]]

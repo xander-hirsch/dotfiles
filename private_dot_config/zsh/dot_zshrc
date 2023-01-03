@@ -1,3 +1,4 @@
+# vim: filetype=zsh
 ZSHRC_LOCAL_PRE="${HOME}/.zshrc_pre"
 [[ -a $ZSHRC_LOCAL_PRE ]] && source $ZSHRC_LOCAL_PRE
 

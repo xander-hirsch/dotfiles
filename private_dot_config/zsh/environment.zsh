@@ -25,5 +25,6 @@ precmd () { __git_ps1 '' '' }
 
 CHEZMOI=$(chezmoi source-path)
 hash -d config="${HOME}/.config"
+hash -d chezmoi="${CHEZMOI}"
 hash -d nvim="${CHEZMOI}/private_dot_config/nvim"
 hash -d zsh="${CHEZMOI}/private_dot_config/zsh"

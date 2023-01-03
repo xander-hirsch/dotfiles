@@ -1,3 +1,4 @@
+# vim: filetype=readline
 set editing-mode vi
 set colored-completion-prefix on
 set colored-stats on
