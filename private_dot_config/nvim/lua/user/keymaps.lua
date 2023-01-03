@@ -1,16 +1,10 @@
-local function keymap(mode, lhs, rhs, desc)
-  local opts = {
-    desc = desc,
-    silent = true,
-  }
-  vim.keymap.set(mode, lhs, rhs, opts)
-end
+local keymap = require("user.util").keymap
 
 -- Remap leader and local leader keys
 vim.g.mapleader = " "
 vim.g.maplocalleader = ";"
 
--- Normal --
+-----  Normal  -----
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", "Go to left window")
 keymap("n", "<C-j>", "<C-w>j", "Go to down window")
@@ -31,7 +25,31 @@ keymap("n", "<A-|>", "<cmd>horizontal wincmd =<cr>", "Equal horizontal window si
 keymap("n", "<A-j>", "<cmd>bnext<cr>", "Next buffer")
 keymap("n", "<A-k>", "<cmd>bprevious<cr>", "Previous buffer")
 
--- Visual --
+-- Highlighting
+keymap("n", "<leader>h", "<cmd>nohlsearch<cr>", "Stop Highlighting")
+keymap("n", "<leader>H", function()
+  vim.opt.hlsearch = not vim.opt.hlsearch:get()
+end, "Toggle Highlighting")
+
+-- Line Numbering
+keymap("n", "<leader>n", function()
+  vim.opt.relativenumber = not vim.opt.relativenumber:get()
+end, "Toggle Line Numbering")
+
+-- Close Window
+keymap("n", "<leader>c", "<cmd>close<cr>", "Close Window")
+
+-- Delete buffer
+local bd_status_ok, bufdelete = pcall(require, "bufdelete")
+local close_buffer_action
+if bd_status_ok then
+  close_buffer_action = bufdelete.bufdelete
+else
+  close_buffer_action = "<cmd>bdelete<cr>"
+end
+keymap("n", "<leader>d", close_buffer_action, "Delete Buffer")
+
+-----  Visual  -----
 -- Stay in indent mode
 keymap("v", "<", "<gv", "Dedent")
 keymap("v", ">", ">gv", "Indent")

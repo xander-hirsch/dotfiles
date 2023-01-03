@@ -32,3 +32,14 @@ telescope.setup {
     },
   },
 }
+
+local keymap = require("user.util").keymap
+local builtin = require "telescope.builtin"
+
+keymap("n", "<leader>b", builtin.buffers, "Buffers")
+keymap("n", "<leader>ff", builtin.find_files, "Files")
+keymap("n", "<leader>fg", builtin.live_grep, "Live Grep")
+keymap("n", "<leader>fh", builtin.help_tags, "Help Tags")
+keymap("n", "<leader>fm", function()
+  builtin.man_pages { sections = { "1", "2", "3" } }
+end, "Man Pages")

@@ -7,3 +7,5 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 nvim_tree.setup {}
+
+require("user.util").keymap("n", "<leader>e", require("nvim-tree.api").tree.toggle, "Explorer")

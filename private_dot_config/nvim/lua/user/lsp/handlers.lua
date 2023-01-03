@@ -50,14 +50,7 @@ M.setup = function()
   })
 end
 
-local function keymap(bufnr, mode, lhs, rhs, desc)
-  local opts = {
-    buffer = bufnr,
-    desc = desc,
-    silent = true,
-  }
-  vim.keymap.set(mode, lhs, rhs, opts)
-end
+local keymap = require("user.util").keymap
 
 local function list_workspace_folders()
   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
@@ -67,9 +60,9 @@ local function lsp_keymaps(bufnr)
   local t_status_ok, telescope = pcall(require, "telescope.builtin")
   local references_action
   if t_status_ok then
-    keymap(bufnr, "n", "<leader>ld", telescope.diagnostics, "Diagnostics")
-    keymap(bufnr, "n", "<leader>s", telescope.lsp_document_symbols, "Document symbols")
-    keymap(bufnr, "n", "<leader>S", telescope.lsp_workspace_symbols, "Workspace symbols")
+    keymap("n", "<leader>ld", telescope.diagnostics, "Diagnostics", bufnr)
+    keymap("n", "<leader>s", telescope.lsp_document_symbols, "Document symbols", bufnr)
+    keymap("n", "<leader>S", telescope.lsp_workspace_symbols, "Workspace symbols", bufnr)
     references_action = telescope.lsp_references
   else
     references_action = vim.lsp.buf.references
@@ -80,26 +73,26 @@ local function lsp_keymaps(bufnr)
     keymap(bufnr, "n", "<leader>ly", "<cmd>SymbolsOutline<cr>", "Symbols outline")
   end
 
-  keymap(bufnr, "n", "gD", vim.lsp.buf.declaration, "Go to declaration")
-  keymap(bufnr, "n", "gd", vim.lsp.buf.definition, "Go to definition")
-  keymap(bufnr, "n", "K", vim.lsp.buf.hover, "Hover")
-  keymap(bufnr, "n", "<leader>k", "K", "Open man page")
-  keymap(bufnr, "n", "gI", vim.lsp.buf.implementation, "Go to implementation")
-  keymap(bufnr, "n", "gr", references_action, "Find references")
-  keymap(bufnr, "n", "gl", vim.diagnostic.open_float, "Open diagnostic float")
-  keymap(bufnr, "n", "]d", vim.diagnostic.goto_next, "Go to next diagnostic")
-  keymap(bufnr, "n", "[d", vim.diagnostic.goto_prev, "Go to previous diagnostic")
-  keymap(bufnr, "n", "<leader>li", "<cmd>LspInfo<cr>", "LSP info")
-  keymap(bufnr, "n", "<leader>lI", "<cmd>NullLsInfo<cr>", "null-ls info")
-  keymap(bufnr, "n", "<leader>lf", vim.lsp.buf.format, "Format buffer")
-  keymap(bufnr, "n", "<leader>la", vim.lsp.buf.code_action, "Code action")
-  keymap(bufnr, "n", "<leader>lr", vim.lsp.buf.rename, "Rename symbol")
-  keymap(bufnr, "n", "<leader>ls", vim.lsp.buf.signature_help, "Signature help")
-  keymap(bufnr, "i", "<C-k>", vim.lsp.buf.signature_help, "Signature help")
-  keymap(bufnr, "n", "<leader>lq", vim.diagnostic.setloclist, "Add diagnostics to location list")
-  keymap(bufnr, "n", "<leader>wa", vim.lsp.buf.add_workspace_folder, "Add workspace folder")
-  keymap(bufnr, "n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, "Remove workspace folder")
-  keymap(bufnr, "n", "<leader>wl", list_workspace_folders, "List workspace folders")
+  keymap("n", "gD", vim.lsp.buf.declaration, "Go to declaration", bufnr)
+  keymap("n", "gd", vim.lsp.buf.definition, "Go to definition", bufnr)
+  keymap("n", "K", vim.lsp.buf.hover, "Hover", bufnr)
+  keymap("n", "<leader>k", "K", "Open man page", bufnr)
+  keymap("n", "gI", vim.lsp.buf.implementation, "Go to implementation", bufnr)
+  keymap("n", "gr", references_action, "Find references", bufnr)
+  keymap("n", "gl", vim.diagnostic.open_float, "Open diagnostic float", bufnr)
+  keymap("n", "]d", vim.diagnostic.goto_next, "Go to next diagnostic", bufnr)
+  keymap("n", "[d", vim.diagnostic.goto_prev, "Go to previous diagnostic", bufnr)
+  keymap("n", "<leader>li", "<cmd>LspInfo<cr>", "LSP info", bufnr)
+  keymap("n", "<leader>lI", "<cmd>NullLsInfo<cr>", "null-ls info", bufnr)
+  keymap("n", "<leader>lf", vim.lsp.buf.format, "Format buffer", bufnr)
+  keymap("n", "<leader>la", vim.lsp.buf.code_action, "Code action", bufnr)
+  keymap("n", "<leader>lr", vim.lsp.buf.rename, "Rename symbol", bufnr)
+  keymap("n", "<leader>ls", vim.lsp.buf.signature_help, "Signature help", bufnr)
+  keymap("i", "<C-k>", vim.lsp.buf.signature_help, "Signature help", bufnr)
+  keymap("n", "<leader>lq", vim.diagnostic.setloclist, "Add diagnostics to location list", bufnr)
+  keymap("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, "Add workspace folder", bufnr)
+  keymap("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, "Remove workspace folder", bufnr)
+  keymap("n", "<leader>wl", list_workspace_folders, "List workspace folders", bufnr)
 end
 
 M.on_attach = function(client, bufnr)

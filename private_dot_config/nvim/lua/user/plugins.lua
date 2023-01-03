@@ -3,6 +3,14 @@ if not status_ok then
   return
 end
 
+local keymap = require("user.util").keymap
+keymap("n", "<leader>pc", packer.compile, "Compile")
+keymap("n", "<leader>pi", packer.install, "Install")
+keymap("n", "<leader>ps", packer.status, "Status")
+keymap("n", "<leader>pp", packer.sync, "Sync")
+keymap("n", "<leader>pu", packer.update, "Update")
+
+
 vim.cmd [[
   augroup packer_user_config
     autocmd!

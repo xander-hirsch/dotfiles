@@ -15,13 +15,9 @@ gitsigns.setup {
   current_line_blame_opts = { delay = 500 },
 
   on_attach = function(bufnr)
+    local keymap = require("user.util").keymap
     local function map(mode, lhs, rhs, desc)
-      local opts = {
-        silent = true,
-        desc = desc,
-        buffer = bufnr,
-      }
-      vim.keymap.set(mode, "<leader>g" .. lhs, rhs, opts)
+      keymap(mode, "<leader>g" .. lhs, rhs, desc, bufnr)
     end
 
     map("n", "g", gitsigns.preview_hunk, "Preview Hunk")
