@@ -39,7 +39,7 @@ alias cs='cspell suggestions'
 REBOOT_FILE='/var/run/reboot-required'
 alias reboot-required='[ -f "$REBOOT_FILE" ] && cat "$REBOOT_FILE"'
 
-{{ if eq .chezmoid.osRelease.idLike "debian" -}}
+{{ if eq .chezmoi.osRelease.idLike "debian" -}}
 alias aud='sudo apt update'
 alias alu='apt list --upgradable'
 alias aug='sudo apt upgrade -y'
