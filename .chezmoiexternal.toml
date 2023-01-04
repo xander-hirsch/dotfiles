@@ -5,6 +5,11 @@
 	filter.command = "sed"
 	filter.args = ["s/PS1=/RPS1=/"]
 
+[".git-prompt.sh"]
+	type = "file"
+	url = "https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh"
+	refreshPeriod = "168h"
+
 [".local/share/nvim/site/pack/packer/start/packer.nvim"]
 	type = "git-repo"
 	url = "https://github.com/wbthomason/packer.nvim.git"

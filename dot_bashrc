@@ -1,0 +1,71 @@
+# vim: filetype=bash
+
+# If not running interactively, don't do anything
+case $- in
+	*i*) ;;
+	*) return;;
+esac
+
+source ~/.aliases
+
+#####  Path  #####
+HOME_BIN="${HOME}/.bin" 
+if [ -d $HOME_BIN ]; then
+	PATH="${HOME_BIN}:$PATH"
+fi
+
+LOCAL_BIN="${HOME}/.local/bin"
+if [ -d $LOCAL_BIN ] ; then
+	PATH="${LOCAL_BIN}:$PATH"
+fi
+
+unset HOME_BIN LOCAL_BIN
+
+#####  Configuration  #####
+shopt -s cdspell checkjobs checkwinsize dirspell extglob
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+#####  History  #####
+
+HISTCONTROL=ignoreboth
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+shopt -s histappend
+
+#####  Prompt  #####
+function nonzero_return() {
+	RETVAL=$?
+	[ $RETVAL -ne 0 ] && echo "$RETVAL "
+}
+
+source ~/.git-prompt.sh
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWCOLORHINTS=1
+export GIT_PS1_SHOWUPSTREAM=auto
+
+PS1_HOST='\[\033[01;32m\]\h \[\033[00m\]'
+PS1_DIR='\[\033[01;34m\]\W \[\033[00m\]'
+PS1_GIT='\[\033[01;30m\]$(__git_ps1 "(%s) ")\[\033[00m\]'
+PS1_RET='\[\033[01;31m\]$(nonzero_return)\[\033[00m\]'
+PS1="${PS1_HOST}${PS1_DIR}${PS1_GIT}${PS1_RET}$ "
+unset PS1_HOST PS1_DIR PS1_GIT PS1_RET
+
+#####  Completition  #####
+if ! shopt -oq posix; then
+	if [ -f /usr/share/bash-completion/bash_completion ]; then
+		source /usr/share/bash-completion/bash_completion
+	elif [ -f /etc/bash_completion ]; then
+		source /etc/bash_completion
+	fi
+
+	if [ -f ~/.git-completition.bash ]; then
+		source ~/.git-completition.bash
+	fi
+fi
+
