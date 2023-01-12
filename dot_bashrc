@@ -25,6 +25,15 @@ HISTFILESIZE=2000
 
 shopt -s histappend
 
+#####  Editor  #####
+if command -v vim; then
+	EDITOR=vim
+else
+	EDITOR=vi
+fi
+export EDITOR
+alias v="$EDITOR"
+
 #####  Prompt  #####
 function nonzero_return() {
 	RETVAL=$?
