@@ -27,6 +27,7 @@ set ruler
 syntax enable
 
 " -----  Keymaps  -----
+nnoremap <Space> <NOP>
 let g:mapleader = ' '
 let g:maplocalleader = ';'
 
@@ -50,6 +51,9 @@ nnoremap <Leader>h <Cmd>nohlsearch<CR>
 nnoremap <Leader>H <Cmd>set hlsearch!<CR>
 
 nnoremap <Leader>n <Cmd>set relativenumber!<CR>
+
+nnoremap <Leader>v <Cmd>vsplit<CR>
+nnoremap <Leader>V <Cmd>split<CR>
 
 nnoremap <Leader>c <Cmd>close<CR>
 nnoremap <Leader>d <Cmd>bdelete<CR>
@@ -75,5 +79,7 @@ nnoremap <Leader>pu <Cmd>PlugUpgrade<CR>
 
 nnoremap <Leader>e <Cmd>NERDTreeToggle<CR>
 
-colorscheme solarized
+if $TERM == 'xterm-256color'
+	colorscheme solarized
+endif
 
