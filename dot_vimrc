@@ -36,27 +36,27 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-nnoremap <F11> <Cmd>resize +2<CR>
-nnoremap <F10> <Cmd>resize -2<CR>
-nnoremap <F12> <Cmd>vertical resize +2<CR>
-nnoremap <F9> <Cmd>vertical resize -2<CR>
+nnoremap <F11> :resize +2<CR>
+nnoremap <F10> :resize -2<CR>
+nnoremap <F12> :vertical resize +2<CR>
+nnoremap <F9> :vertical resize -2<CR>
 
-nnoremap <Bslash> <Cmd>vertical wincmd =<CR>
-nnoremap <Bar> <Cmd>horizontal wincmd =<CR>
+nnoremap <Bslash> :vertical wincmd =<CR>
+nnoremap <Bar> :horizontal wincmd =<CR>
 
-nnoremap <F7> <Cmd>bnext<CR>
-nnoremap <F8> <Cmd>bprevious<CR>
+nnoremap <F7> :bnext<CR>
+nnoremap <F8> :bprevious<CR>
 
-nnoremap <Leader>h <Cmd>nohlsearch<CR>
-nnoremap <Leader>H <Cmd>set hlsearch!<CR>
+nnoremap <Leader>h :nohlsearch<CR>
+nnoremap <Leader>H :set hlsearch!<CR>
 
-nnoremap <Leader>n <Cmd>set relativenumber!<CR>
+nnoremap <Leader>n :set relativenumber!<CR>
 
-nnoremap <Leader>v <Cmd>vsplit<CR>
-nnoremap <Leader>V <Cmd>split<CR>
+nnoremap <Leader>v :vsplit<CR>
+nnoremap <Leader>V :split<CR>
 
-nnoremap <Leader>c <Cmd>close<CR>
-nnoremap <Leader>d <Cmd>bdelete<CR>
+nnoremap <Leader>c :close<CR>
+nnoremap <Leader>d :bdelete<CR>
 
 " ------  Plugins  ------
 let g:airline_symbols_ascii = 1
@@ -72,12 +72,12 @@ Plug 'preservim/nerdtree'
 Plug 'tpope/vim-commentary'
 call plug#end()
 
-nnoremap <Leader>pc <Cmd>PlugClean<CR>
-nnoremap <Leader>pp <Cmd>PlugUpdate<CR>
-nnoremap <Leader>ps <Cmd>PlugStatus<CR>
-nnoremap <Leader>pu <Cmd>PlugUpgrade<CR>
+nnoremap <Leader>pc :PlugClean<CR>
+nnoremap <Leader>pp :PlugUpdate<CR>
+nnoremap <Leader>ps :PlugStatus<CR>
+nnoremap <Leader>pu :PlugUpgrade<CR>
 
-nnoremap <Leader>e <Cmd>NERDTreeToggle<CR>
+nnoremap <Leader>e :NERDTreeToggle<CR>
 
 if $TERM == 'xterm-256color'
 	colorscheme solarized
