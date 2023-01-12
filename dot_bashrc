@@ -8,19 +8,6 @@ esac
 
 source ~/.aliases
 
-#####  Path  #####
-HOME_BIN="${HOME}/.bin" 
-if [ -d $HOME_BIN ]; then
-	PATH="${HOME_BIN}:$PATH"
-fi
-
-LOCAL_BIN="${HOME}/.local/bin"
-if [ -d $LOCAL_BIN ] ; then
-	PATH="${LOCAL_BIN}:$PATH"
-fi
-
-unset HOME_BIN LOCAL_BIN
-
 #####  Configuration  #####
 shopt -s cdspell checkjobs checkwinsize dirspell extglob
 
@@ -55,12 +42,6 @@ PS1_GIT='\[\033[01;30m\]$(__git_ps1 "(%s) ")\[\033[00m\]'
 PS1_RET='\[\033[01;31m\]$(nonzero_return)\[\033[00m\]'
 PS1="${PS1_HOST}${PS1_DIR}${PS1_GIT}${PS1_RET}$ "
 unset PS1_HOST PS1_DIR PS1_GIT PS1_RET
-
-function try_source() {
-	if [ -f $1 ]; then
-		source $1
-	fi
-}
 
 #####  Completition  #####
 if ! shopt -oq posix; then

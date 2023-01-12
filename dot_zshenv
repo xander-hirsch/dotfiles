@@ -10,33 +10,8 @@ if [[ $(uname -s) == 'Darwin' ]]; then
 	export SHELL_SESSIONS_DISABLE=1
 fi
 
-#####  pyenv  #####
-PYENV_ROOT="${HOME}/.pyenv"
-if [[ -d $PYENV_ROOT ]]; then
-	export PYENV_ROOT
-	path=("${PYENV_ROOT}/bin" $path)
-	eval "$(pyenv init -)"
-	eval "$(pyenv virtualenv-init -)"
-fi
-
-#####  nvm  #####
-NVM_DIR="${HOME}/.config/nvm"
-if [[ -d $NVM_DIR ]]; then
-	export NVM_DIR
-	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-fi
-
-#####  cargo  #####
-CARGO_ENV="${HOME}/.cargo/env"
-[[ -s $CARGO_ENV ]] && source $CARGO_ENV
-
-##### local binaries  #####
-LOCAL_BIN="${HOME}/.local/bin"
-if [[ -d $LOCAL_BIN ]]; then
-	path=($LOCAL_BIN $path)
-fi
-
 ZSHENV_LOCAL="${HOME}/.zshenv_local"
-[[ -s $ZSHENV_LOCAL ]] && source $ZSHENV_LOCAL || true
+if [[ -s $ZSHENV_LOCAL ]]; then
+	source $ZSHENV_LOCAL
+fi
 

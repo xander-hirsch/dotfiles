@@ -1,6 +1,40 @@
+# vim: filetype=zsh
+
+#####  homebrew  #####
 BREW='/opt/homebrew/bin/brew'
 if [[ -a $BREW ]]; then
 	eval "$($BREW shellenv)"
+fi
+
+#####  pyenv  #####
+PYENV_ROOT="${HOME}/.pyenv"
+if [[ -d $PYENV_ROOT ]]; then
+	export PYENV_ROOT
+	path=("${PYENV_ROOT}/bin" $path)
+	eval "$(pyenv init -)"
+	eval "$(pyenv virtualenv-init -)"
+fi
+
+#####  nvm  #####
+NVM_DIR="${HOME}/.config/nvm"
+if [[ -d $NVM_DIR ]]; then
+	export NVM_DIR
+	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+fi
+
+#####  cargo  #####
+CARGO_ENV="${HOME}/.cargo/env"
+[[ -s $CARGO_ENV ]] && source $CARGO_ENV
+
+##### local binaries  #####
+HOME_BIN="${HOME}/.bin"
+if [[ -d $HOME_BIN ]]; then
+	path=($HOME_BIN $path)
+fi
+LOCAL_BIN="${HOME}/.local/bin"
+if [[ -d $LOCAL_BIN ]]; then
+	path=($LOCAL_BIN $path)
 fi
 
 ZPROFILE_LOCAL="${HOME}/.zprofile"

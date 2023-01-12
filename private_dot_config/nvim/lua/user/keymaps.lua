@@ -21,6 +21,10 @@ keymap("n", "<A-Right>", ":vertical resize +2<CR>", "Expand window vertically")
 keymap("n", "<A-\\>", "<cmd>vertical wincmd =<cr>", "Equal vertical window size")
 keymap("n", "<A-|>", "<cmd>horizontal wincmd =<cr>", "Equal horizontal window size")
 
+-- Split windows
+keymap("n", "<Leader>v", "<Cmd>vsplit<CR>", "Vertical split")
+keymap("n", "<Leader>V", "<Cmd>split<CR>", "Horizontal split")
+
 -- Navigate buffers
 keymap("n", "<A-j>", "<cmd>bnext<cr>", "Next buffer")
 keymap("n", "<A-k>", "<cmd>bprevious<cr>", "Previous buffer")
