@@ -1,3 +1,7 @@
+function show-path {
+	echo $path | tr ' ' "\n"
+}
+
 function unzip-ignore {
 	local UNZIP_IGNORE_MAC=('__MACOSX/*' '*.DS_Store')
 	local UNZIP_IGNORE_PYTHON=('*__pycache__/*' '*.ipynb_checkpoints/*')
