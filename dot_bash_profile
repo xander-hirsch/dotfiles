@@ -1,4 +1,12 @@
 # vim: filetype=bash
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_DATA_HOME="${HOME}/.local/share"
+
+NVM_DIR="${XDG_CONFIG_HOME}/nvm"
+if [[ -d $NVM_DIR ]]; then
+	export NVM_DIR
+	source "${NVM_DIR}/nvm.sh"
+fi
 
 HOME_BIN="${HOME}/.bin" 
 if [ -d $HOME_BIN ]; then

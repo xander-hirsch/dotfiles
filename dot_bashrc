@@ -61,11 +61,12 @@ if ! shopt -oq posix; then
 		source /etc/bash_completion
 	fi
 
-	GIT_COMP="${HOME}/.git-completition.bash"
-	if [ -f $GIT_COMP ]; then source $GIT_COMP; fi
 	CHEZMOI_COMP="${HOME}/.chezmoi-completion.bash"
-	if [ -f $CHEZMOI_COMP ]; then source $CHEZMOI_COMP; fi
-	unset GIT_COMP CHEZMOI_COMP
+	if [[ -f $CHEZMOI_COMP ]]; then source $CHEZMOI_COMP; fi
+
+	if [[ -z NVM_DIR ]]; then
+		source "${NVM_DIR}/bash_completion"
+	fi
 fi
 
 #####  Local Configuration  #####
