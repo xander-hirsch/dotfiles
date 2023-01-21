@@ -13,6 +13,12 @@ done
 
 source "${HOME}/.aliases"
 
+#####  plugins  #####
+source "${ZDOTDIR}/.zplug/init.zsh"
+zplug "jeffreytse/zsh-vi-mode"
+zplug "plugins/rust", from:oh-my-zsh
+zplug load
+
 #####  macOS  #####
 if [[ $(uname -s) == 'Darwin' ]]; then
 	unset SHELL_SESSIONS_DISABLE

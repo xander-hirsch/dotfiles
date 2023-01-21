@@ -5,6 +5,12 @@
 	filter.command = "sed"
 	filter.args = ["s/PS1=/RPS1=/"]
 
+[".config/zsh/.zplug"]
+	type= "git-repo"
+	url = "https://github.com/zplug/zplug.git"
+	refreshPeriod = "168h"
+	clone.args = ["--depth", "1"]
+
 [".git-prompt.sh"]
 	type = "file"
 	url = "https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh"
@@ -13,6 +19,7 @@
 [".local/share/nvim/site/pack/packer/start/packer.nvim"]
 	type = "git-repo"
 	url = "https://github.com/wbthomason/packer.nvim.git"
+	clone.args = ["--depth", "1"]
 
 [".vim/autoload/plug.vim"]
   type = "file"
