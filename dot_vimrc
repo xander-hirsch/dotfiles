@@ -10,8 +10,8 @@ set number
 set relativenumber
 set cursorline
 set cursorlineopt=number
-set scrolloff=8
-set sidescrolloff=8
+set scrolloff=4
+set sidescrolloff=4
 
 set splitbelow
 set splitright
@@ -20,6 +20,7 @@ set hlsearch
 set ignorecase
 
 set background=light
+set termguicolors
 
 set laststatus=2
 set ruler
@@ -64,7 +65,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='solarized'
 
 call plug#begin()
-Plug 'altercation/vim-colors-solarized'
+Plug 'lifepillar/vim-solarized8'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -79,7 +80,5 @@ nnoremap <Leader>pu :PlugUpgrade<CR>
 
 nnoremap <Leader>e :NERDTreeToggle<CR>
 
-if $TERM == 'xterm-256color'
-	colorscheme solarized
-endif
+colorscheme solarized8
 
