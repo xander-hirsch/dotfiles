@@ -1,3 +1,6 @@
+Match host *.xanderhirsch.us
+	ForwardAgent yes
+
 Host github.com
 	RequestTTY no
 
@@ -7,6 +10,10 @@ Host *
 {{- end }}
 	AddKeysToAgent yes
 	IdentityFile ~/.ssh/id_ed25519
+
 	ControlMaster auto
 	ControlPath ~/.ssh/control/%C
 	ControlPersist 600
+
+	CanonicalizeHostname yes
+	CanonicalDomains home.xanderhirsch.us
