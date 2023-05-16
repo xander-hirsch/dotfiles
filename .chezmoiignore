@@ -3,5 +3,5 @@
 {{ end -}}
 
 {{- if eq .nixpkgsCommit "" -}}
-.nix-defexpr/nixpkgs/default.nix
+.nix-defexpr
 {{ end -}}
