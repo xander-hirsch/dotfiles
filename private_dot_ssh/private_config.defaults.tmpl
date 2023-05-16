@@ -1,19 +1,21 @@
+{{ if eq .email "xh@xanderhirsch.us" -}}
 Match host *.xanderhirsch.us
 	ForwardAgent yes
 
 Host github.com
 	RequestTTY no
-
+{{ end }}
 Host *
 {{- if eq .chezmoi.os "darwin" }}
 	UseKeychain yes
-{{- end }}
+{{ end }}
 	AddKeysToAgent yes
 	IdentityFile ~/.ssh/id_ed25519
 
 	ControlMaster auto
 	ControlPath ~/.ssh/control/%C
 	ControlPersist 600
-
+{{ if eq .email "xh@xanderhirsch.us" }}
 	CanonicalizeHostname yes
 	CanonicalDomains home.xanderhirsch.us
+{{- end }}
