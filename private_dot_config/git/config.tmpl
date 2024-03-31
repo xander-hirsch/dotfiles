@@ -5,8 +5,14 @@
 	light = true
 	syntax-theme = "Solarized (light)"
 {{- end }}
+[diff]
+	algorithm = histogram
+[fetch]
+	prune = true
 [init]
 	defaultBranch = {{ .defaultBranch }}
+[log]
+	abbrevCommit = true
 [pull]
 	ff = only
 [user]

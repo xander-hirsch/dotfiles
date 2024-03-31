@@ -18,12 +18,12 @@ alias m='make'
 alias s='ssh'
 alias v="$EDITOR"
 
-{{ if lookPath "exa" -}}
-alias l='exa'
-alias la='exa -a'
-alias ll='exa -l'
-alias lla='exa -al'
-{{ else }}
+{{ if lookPath "eza" -}}
+alias l='eza'
+alias la='eza --all'
+alias ll='eza --long'
+alias lla='eza -all --long'
+{{- else -}}
 alias l='ls --color'
 alias la='ls -A --color'
 alias ll='ls -lh --color'
@@ -38,20 +38,21 @@ alias cs='cspell suggestions'
 {{ if eq .chezmoi.os "linux" -}}
 REBOOT_FILE='/var/run/reboot-required'
 alias reboot-required='[ -f "$REBOOT_FILE" ] && cat "$REBOOT_FILE"'
+{{- end }}
 
-{{ if eq .chezmoi.osRelease.idLike "debian" -}}
+{{ if lookPath "apt" -}}
 alias aud='sudo apt update'
 alias alu='apt list --upgradable'
 alias aug='sudo apt upgrade -y'
-{{- end -}}
+{{- end }}
 
-{{ else if eq .chezmoi.os "darwin" -}}
+{{ if eq .chezmoi.os "darwin" -}}
+alias cp='cp -c'
+{{- end }}
+
+{{ if lookPath "brew" -}}
 alias b='brew'
 alias bud='brew update'
 alias bo='brew outdated'
 alias bug='brew upgrade'
-
-alias cp='cp -c'
-
 {{- end }}
-

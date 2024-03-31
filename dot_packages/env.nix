@@ -2,7 +2,7 @@ with import <nixpkgs> {}; [
   bat
   chezmoi
   delta
-  exa
+  eza
   fd
   git
   neovim
