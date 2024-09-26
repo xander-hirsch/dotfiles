@@ -25,6 +25,8 @@ set termguicolors
 set laststatus=2
 set ruler
 
+set mouse=a
+
 syntax enable
 
 " -----  Keymaps  -----
@@ -62,10 +64,9 @@ nnoremap <Leader>d :bdelete<CR>
 " ------  Plugins  ------
 let g:airline_symbols_ascii = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='solarized'
+let g:airline_theme='base16_material_lighter'
 
 call plug#begin()
-Plug 'lifepillar/vim-solarized8'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -79,6 +80,3 @@ nnoremap <Leader>ps :PlugStatus<CR>
 nnoremap <Leader>pu :PlugUpgrade<CR>
 
 nnoremap <Leader>e :NERDTreeToggle<CR>
-
-colorscheme solarized8
-
