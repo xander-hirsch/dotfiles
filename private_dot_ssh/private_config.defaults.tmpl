@@ -1,23 +1,27 @@
-{{ if eq .email "xander@xanderhirsch.net" -}}
-Match host *.xanderhirsch.us
-	ForwardAgent yes
+# Add the following to ~/.ssh/config:
+# Host *
+#     Include config.defaults
 
-Host github.com
-	RequestTTY no
+{{ if eq .email "xander@xanderhirsch.net" -}}
+Match host *.xanderhirsch.us, host *.exocomet-tortoise.ts.net
+    ForwardAgent yes
 {{- end }}
 
+Host github.com
+    RequestTTY no
+
 Host *
-	IgnoreUnknown UseKeychain
+    IgnoreUnknown UseKeychain
 
-	UseKeychain yes
-	AddKeysToAgent yes
-	IdentityFile ~/.ssh/id_ed25519
+    UseKeychain yes
+    AddKeysToAgent yes
+    IdentityFile ~/.ssh/id_ed25519
 
-	ControlMaster auto
-	ControlPath ~/.ssh/control/%C
-	ControlPersist 600
+    ControlMaster auto
+    ControlPath ~/.ssh/control/%C
+    ControlPersist 600
 
 {{ if eq .email "xander@xanderhirsch.net" -}}
-	CanonicalizeHostname yes
-	CanonicalDomains home.xanderhirsch.us
+    CanonicalizeHostname yes
+    CanonicalDomains home.xanderhirsch.us exocomet-tortoise.ts.net
 {{- end }}
