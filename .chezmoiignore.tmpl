@@ -1,0 +1,3 @@
+{{ if not (lookPath "msmtp") -}} .config/msmtp {{- end }}
+
+{{ if eq .nixpkgsCommit "" -}} .nix-defexpr {{- end }}
