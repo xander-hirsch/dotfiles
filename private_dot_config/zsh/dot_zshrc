@@ -14,10 +14,18 @@ done
 source "${HOME}/.aliases"
 
 #####  plugins  #####
+export ZVM_INIT_MODE=sourcing
+
 source "${ZDOTDIR}/.zplug/init.zsh"
 zplug "jeffreytse/zsh-vi-mode"
-zplug "plugins/rust", from:oh-my-zsh
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-syntax-highlighting"
 zplug load
+
+#####  fzf  #####
+if command -v fzf &> /dev/null; then
+	source <(fzf --zsh)
+fi
 
 #####  macOS  #####
 if [[ $(uname -s) == 'Darwin' ]]; then

@@ -49,6 +49,7 @@ nnoremap <Bar> :horizontal wincmd =<CR>
 
 nnoremap <F7> :bnext<CR>
 nnoremap <F8> :bprevious<CR>
+nnoremap <Leader>b :buffers<CR>:buffer<Space>
 
 nnoremap <Leader>h :nohlsearch<CR>
 nnoremap <Leader>H :set hlsearch!<CR>
@@ -68,15 +69,17 @@ let g:airline_theme='base16_material_lighter'
 
 call plug#begin()
 Plug 'airblade/vim-gitgutter'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-sensible'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 nnoremap <Leader>pc :PlugClean<CR>
-nnoremap <Leader>pp :PlugUpdate<CR>
 nnoremap <Leader>ps :PlugStatus<CR>
-nnoremap <Leader>pu :PlugUpgrade<CR>
+nnoremap <Leader>pp :PlugUpdate<CR>
 
 nnoremap <Leader>e :NERDTreeToggle<CR>
