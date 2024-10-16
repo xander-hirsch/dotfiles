@@ -19,7 +19,7 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 #####  Keybindings  #####
 if command -v fzf &> /dev/null; then
-	eval "$(fzf --bash)"
+	eval "$(fzf --bash 2> /dev/null)"
 fi
 
 #####  History  #####

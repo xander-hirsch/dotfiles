@@ -34,10 +34,21 @@ nnoremap <Space> <NOP>
 let g:mapleader = ' '
 let g:maplocalleader = ';'
 
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+nnoremap <M-h> <C-w>h
+nnoremap <M-j> <C-w>j
+nnoremap <M-k> <C-w>k
+nnoremap <M-l> <C-w>l
+nnoremap <M-o> <C-w>o
+
+nnoremap <M-S-j> :bNext<CR>
+nnoremap <M-S-k> :bprevious<CR>
+nnoremap <Leader>b :buffers<CR>:buffer<Space>
+
+nnoremap <Left> :tabprevious<CR>
+nnoremap <Right> :tabnext<CR>
+nnoremap <S-Left> :tabmove -1<CR>
+nnoremap <S-Right> :tabmove +1<CR>
+nnoremap <Leader>t :tabnew<CR>
 
 nnoremap <F11> :resize +2<CR>
 nnoremap <F10> :resize -2<CR>
@@ -46,10 +57,6 @@ nnoremap <F9> :vertical resize -2<CR>
 
 nnoremap <Bslash> :vertical wincmd =<CR>
 nnoremap <Bar> :horizontal wincmd =<CR>
-
-nnoremap <F7> :bnext<CR>
-nnoremap <F8> :bprevious<CR>
-nnoremap <Leader>b :buffers<CR>:buffer<Space>
 
 nnoremap <Leader>h :nohlsearch<CR>
 nnoremap <Leader>H :set hlsearch!<CR>
@@ -62,6 +69,8 @@ nnoremap <Leader>V :split<CR>
 nnoremap <Leader>c :close<CR>
 nnoremap <Leader>d :bdelete<CR>
 
+nnoremap <Leader>w :set list!<CR>
+
 " ------  Plugins  ------
 let g:airline_symbols_ascii = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -69,10 +78,11 @@ let g:airline_theme='base16_material_lighter'
 
 call plug#begin()
 Plug 'airblade/vim-gitgutter'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
