@@ -55,7 +55,7 @@ PS1_HOST='\[\033[01;32m\]\h \[\033[00m\]'
 PS1_DIR='\[\033[01;34m\]\W \[\033[00m\]'
 PS1_GIT='\[\033[01;30m\]$(__git_ps1 "(%s) ")\[\033[00m\]'
 PS1_RET='\[\033[01;31m\]$(nonzero_return)\[\033[00m\]'
-PS1="${PS1_HOST}${PS1_DIR}${PS1_GIT}${PS1_RET}\$ "
+PS1="${PS1_HOST}${PS1_DIR}${PS1_GIT}${PS1_RET}\\$ "
 unset PS1_HOST PS1_DIR PS1_GIT PS1_RET
 
 #####  Completition  #####
