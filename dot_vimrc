@@ -7,7 +7,7 @@ set shiftwidth=4
 set noexpandtab
 
 set number
-set relativenumber
+set norelativenumber
 set cursorline
 set cursorlineopt=number
 set scrolloff=4
@@ -27,6 +27,8 @@ set ruler
 
 set mouse=a
 
+set listchars=tab:{-},trail:!,extends:>,precedes:<
+
 syntax enable
 
 " -----  Keymaps  -----
@@ -39,9 +41,9 @@ nnoremap <M-j> <C-w>j
 nnoremap <M-k> <C-w>k
 nnoremap <M-l> <C-w>l
 nnoremap <M-o> <C-w>o
+nnoremap <M-n> :bNext<CR>
+nnoremap <M-p> :bprevious<CR>
 
-nnoremap <M-S-j> :bNext<CR>
-nnoremap <M-S-k> :bprevious<CR>
 nnoremap <Leader>b :buffers<CR>:buffer<Space>
 
 nnoremap <Left> :tabprevious<CR>
@@ -63,8 +65,11 @@ nnoremap <Leader>H :set hlsearch!<CR>
 
 nnoremap <Leader>n :set relativenumber!<CR>
 
-nnoremap <Leader>v :vsplit<CR>
-nnoremap <Leader>V :split<CR>
+nnoremap <Leader>ww :set list!<CR>
+nnoremap <Leader>wr :set wrap!<CR>
+
+nnoremap <Leader>vv :vsplit<CR>
+nnoremap <Leader>vh :split<CR>
 
 nnoremap <Leader>c :close<CR>
 nnoremap <Leader>d :bdelete<CR>
