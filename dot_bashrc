@@ -17,11 +17,6 @@ shopt -s cdspell checkjobs checkwinsize dirspell extglob
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-#####  Keybindings  #####
-if command -v fzf &> /dev/null; then
-	eval "$(fzf --bash 2> /dev/null)"
-fi
-
 #####  History  #####
 
 HISTCONTROL=ignoreboth
@@ -74,9 +69,17 @@ if ! shopt -oq posix; then
 	fi
 fi
 
+#####  Keybindings  #####
+if command -v fzf &> /dev/null; then
+	eval "$(fzf --bash 2> /dev/null)"
+fi
+
+if command -v zoxide &> /dev/null; then
+	eval "$(zoxide init bash --cmd cd)"
+fi
+
 #####  Local Configuration  #####
 LOCAL_BASHRC="${HOME}/.bashrc_local"
 if [ -s $LOCAL_BASHRC ]; then
 	source $LOCAL_BASHRC
 fi
-

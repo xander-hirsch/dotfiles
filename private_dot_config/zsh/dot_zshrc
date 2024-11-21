@@ -22,11 +22,6 @@ zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug load
 
-#####  fzf  #####
-if command -v fzf &> /dev/null; then
-	source <(fzf --zsh)
-fi
-
 #####  macOS  #####
 if [[ $(uname -s) == 'Darwin' ]]; then
 	unset SHELL_SESSIONS_DISABLE
@@ -36,6 +31,15 @@ if [[ $(uname -s) == 'Darwin' ]]; then
 fi
 
 autoload -U compinit && compinit
+
+#####  Shell tools  #####
+if command -v fzf &> /dev/null; then
+	source <(fzf --zsh)
+fi
+
+if command -v zoxide &> /dev/null; then
+	eval "$(zoxide init zsh --cmd cd)"
+fi
 
 ZSHRC_LOCAL="${HOME}/.zshrc"
 [[ -a $ZSHRC_LOCAL ]] && source $ZSHRC_LOCAL || true
