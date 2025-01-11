@@ -1,0 +1,4 @@
+theme = Builtin Light
+shell-integration-features = sudo,title
+window-height = 40
+window-width = 110

@@ -2,6 +2,14 @@ function show-path {
 	echo $path | tr ' ' "\n"
 }
 
+function ghostty-copy-terminfo {
+	if [[ -z $1 ]]; then
+		echo "Usage: copy-ghostty-terminfo SSH_HOST"
+		return 1
+	fi
+	infocmp -x | ssh $1 -- tic -x - && ssh -O exit $1
+}
+
 function unzip-ignore {
 	local UNZIP_IGNORE_MAC=('__MACOSX/*' '*.DS_Store')
 	local UNZIP_IGNORE_PYTHON=('*__pycache__/*' '*.ipynb_checkpoints/*')

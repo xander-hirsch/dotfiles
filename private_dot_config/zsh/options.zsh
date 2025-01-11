@@ -3,6 +3,9 @@ setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 setopt PUSHD_SILENT
 
+#####  Interactive Behavior  #####
+setopt INTERACTIVE_COMMENTS
+
 #####  History  #####
 export HISTFILE="${ZDOTDIR}/.zsh_history"
 export HISTSIZE=12000

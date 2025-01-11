@@ -9,7 +9,7 @@ export VISUAL="$EDITOR"
 
 #####  prompt  #####
 setopt PROMPT_SUBST
-PS1='%B%F{green}%m%f %F{blue}%c%f %(0?..%F{red}%? %f)%% %b'
+PS1='%B%F{green}%m%f %F{blue}%c%f %(0?..%F{red}%? %f)%# %b'
 if [[ $(hostname -s) == 'Xanders-MacBook-Air' ]]; then
 	PS1=$(echo $PS1 | sed 's/%F{green}%m%f //')
 fi
