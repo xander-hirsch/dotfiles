@@ -34,6 +34,12 @@ fi
 CARGO_ENV="${HOME}/.cargo/env"
 [[ -s $CARGO_ENV ]] && source $CARGO_ENV
 
+#####  OrbStack  #####
+ORBSTACK_DIR="${HOME}/.orbstack"
+if [[ -d $ORBSTACK_DIR ]]; then
+	source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+fi
+
 ##### local binaries  #####
 LOCAL_BIN="${HOME}/.local/bin"
 if [[ -d $LOCAL_BIN ]]; then

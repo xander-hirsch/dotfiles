@@ -52,6 +52,7 @@ alias flushDns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
 {{- end }}
 
 {{ if lookPath "brew" -}}
+alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
 alias b='brew'
 alias bud='brew update'
 alias bo='brew outdated'

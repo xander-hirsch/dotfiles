@@ -3,7 +3,7 @@
 #     Include config.defaults
 
 {{ if eq .email "xander@xanderhirsch.net" -}}
-Match host *.xanderhirsch.us, host *.exocomet-tortoise.ts.net
+Match host *.xanderhirsch.net, host *.exocomet-tortoise.ts.net
     ForwardAgent yes
 {{- end }}
 
@@ -23,5 +23,5 @@ Host *
 
 {{ if eq .email "xander@xanderhirsch.net" -}}
     CanonicalizeHostname yes
-    CanonicalDomains home.xanderhirsch.us exocomet-tortoise.ts.net
+    CanonicalDomains home.xanderhirsch.net exocomet-tortoise.ts.net
 {{- end }}

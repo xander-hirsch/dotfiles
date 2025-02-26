@@ -1,6 +1,7 @@
 [alias]
 alias = !git config --list | grep alias.* | cut -b 7-
 co = checkout
+commitMsg = log --format=%B -n 1
 last = log -1 HEAD --stat
 lg = log --graph
 st = status --short

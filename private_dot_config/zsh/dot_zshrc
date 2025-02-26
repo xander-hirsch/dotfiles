@@ -37,9 +37,9 @@ if command -v fzf &> /dev/null; then
 	source <(fzf --zsh)
 fi
 
+ZSHRC_LOCAL="${HOME}/.zshrc"
+[[ -a $ZSHRC_LOCAL ]] && source $ZSHRC_LOCAL || true
+
 if command -v zoxide &> /dev/null; then
 	eval "$(zoxide init zsh --cmd cd)"
 fi
-
-ZSHRC_LOCAL="${HOME}/.zshrc"
-[[ -a $ZSHRC_LOCAL ]] && source $ZSHRC_LOCAL || true
