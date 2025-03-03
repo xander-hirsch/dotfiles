@@ -1,3 +1,4 @@
 .cache/
 .vscode/
 .gdbinit
+.DS_Store
