@@ -19,7 +19,8 @@ Host *
 
     ControlMaster auto
     ControlPath ~/.ssh/control/%C
-    ControlPersist 600
+    ControlPersist no
+    ServerAliveInterval 30
 
 {{ if eq .email "xander@xanderhirsch.net" -}}
     CanonicalizeHostname yes
