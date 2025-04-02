@@ -1,7 +1,3 @@
-# Add the following to ~/.ssh/config:
-# Host *
-#     Include config.defaults
-
 {{ if eq .email "xander@xanderhirsch.net" -}}
 Match host *.xanderhirsch.net, host *.exocomet-tortoise.ts.net
     ForwardAgent yes
@@ -22,7 +18,7 @@ Host *
     ControlPersist no
     ServerAliveInterval 30
 
-{{ if eq .email "xander@xanderhirsch.net" -}}
+{{ if eq .email "xander@xanderhirsch.net" }}
     CanonicalizeHostname yes
     CanonicalDomains home.xanderhirsch.net exocomet-tortoise.ts.net
 {{- end }}
