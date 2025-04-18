@@ -40,6 +40,12 @@ if [[ -d $ORBSTACK_DIR ]]; then
 	source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 fi
 
+##### go binaries  #####
+GO_BIN="${HOME}/go/bin"
+if [[ -d $GO_BIN ]]; then
+	path=($GO_BIN $path)
+fi
+
 ##### local binaries  #####
 LOCAL_BIN="${HOME}/.local/bin"
 if [[ -d $LOCAL_BIN ]]; then

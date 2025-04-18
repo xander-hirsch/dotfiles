@@ -8,6 +8,11 @@ if [[ -d $NVM_DIR ]]; then
 	source "${NVM_DIR}/nvm.sh"
 fi
 
+GO_BIN="${HOME}/go/bin"
+if [[ -d $GO_BIN ]]; then
+	path=($GO_BIN $path)
+fi
+
 HOME_BIN="${HOME}/.bin" 
 if [ -d $HOME_BIN ]; then
 	PATH="${HOME_BIN}:$PATH"
