@@ -14,13 +14,9 @@ done
 source "${HOME}/.aliases"
 
 #####  plugins  #####
-export ZVM_INIT_MODE=sourcing
-
-source "${ZDOTDIR}/.zplug/init.zsh"
-zplug "jeffreytse/zsh-vi-mode"
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug load
+source "${ZDOTDIR}/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+source "${ZDOTDIR}/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "${ZDOTDIR}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 #####  macOS  #####
 if [[ $(uname -s) == 'Darwin' ]]; then

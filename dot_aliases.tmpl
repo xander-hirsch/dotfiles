@@ -18,7 +18,7 @@ alias m='make'
 alias s='ssh'
 alias v="$EDITOR"
 
-alias showPath='echo $PATH | sed "s/:/\n/g"'
+alias showPath='echo "$PATH" | sed "s/:/\n/g"'
 
 {{ if lookPath "eza" -}}
 alias l='eza'

@@ -23,9 +23,3 @@ then
     echo 'Updating Vim plugins...'
     vim -Ec 'PlugUpdate|qa' > /dev/null
 fi
-
-if which zsh > /dev/null
-then
-    echo 'Updating Zsh plugins...'
-    zsh -c 'source "${ZDOTDIR}/.zplug/init.zsh" && zplug update' > /dev/null
-fi
