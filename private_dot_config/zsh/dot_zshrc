@@ -29,13 +29,22 @@ fi
 autoload -U compinit && compinit
 
 #####  Shell tools  #####
-if command -v fzf &> /dev/null; then
+if command -v uv &> /dev/null; then
+	eval "$(uv generate-shell-completion zsh)"
+	eval "$(uvx --generate-shell-completion zsh)"
+fi
+
+function __xh_fzf_init() {
 	source <(fzf --zsh)
+}
+if command -v fzf &> /dev/null; then
+	zvm_after_init_commands+=(__xh_fzf_init)
 fi
 
 ZSHRC_LOCAL="${HOME}/.zshrc"
 [[ -a $ZSHRC_LOCAL ]] && source $ZSHRC_LOCAL || true
 
+# Zoxide needs to be the very last piece to execute
 if command -v zoxide &> /dev/null; then
 	eval "$(zoxide init zsh --cmd cd)"
 fi

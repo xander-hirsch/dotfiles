@@ -6,7 +6,7 @@ if [[ -f $LAST_UPDATE_FILE ]]; then
     LAST_UPDATE_DIFFERENCE=$(($(date +%s) - $(date -r $LAST_UPDATE_FILE +%s)))
 
     if [[ $LAST_UPDATE_DIFFERENCE -lt 86400 ]]; then
-        echo 'Plugins updated in the past 24 hours. Skipping.'
+        # echo 'Plugins updated in the past 24 hours. Skipping.'
         exit 0
     fi
 fi

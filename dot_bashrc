@@ -61,11 +61,13 @@ if ! shopt -oq posix; then
 		source /etc/bash_completion
 	fi
 
-	CHEZMOI_COMP="${HOME}/.chezmoi-completion.bash"
-	if [[ -f $CHEZMOI_COMP ]]; then source $CHEZMOI_COMP; fi
-
 	if [[ -z NVM_DIR ]]; then
 		source "${NVM_DIR}/bash_completion"
+	fi
+
+	if command -v uv &> /dev/null; then
+		eval "$(uv generate-shell-completion bash)"
+		eval "$(uvx --generate-shell-completion bash)"
 	fi
 fi
 
