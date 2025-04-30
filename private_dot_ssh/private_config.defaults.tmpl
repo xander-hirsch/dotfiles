@@ -1,5 +1,5 @@
 {{ if eq .email "xander@xanderhirsch.net" -}}
-Match host="*.xanderhirsch.net,*.exocomet-tortoise.ts.net"
+Match host "*.xhlab.net,*.exocomet-tortoise.ts.net"
     ForwardAgent yes
 {{- end }}
 
@@ -8,6 +8,7 @@ Host github.com
 
 Host *
     IgnoreUnknown UseKeychain
+    HashKnownHosts no
 
     UseKeychain yes
     AddKeysToAgent yes
@@ -20,5 +21,5 @@ Host *
 
 {{ if eq .email "xander@xanderhirsch.net" }}
     CanonicalizeHostname yes
-    CanonicalDomains home.xanderhirsch.net exocomet-tortoise.ts.net
+    CanonicalDomains home.xhlab.net exocomet-tortoise.ts.net
 {{- end }}
