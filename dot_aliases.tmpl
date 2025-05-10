@@ -62,3 +62,7 @@ alias bud='brew update'
 alias bo='brew outdated'
 alias bug='brew upgrade'
 {{- end }}
+
+{{ if lookPath "uv" -}}
+alias certbot='sudo uvx --with certbot-dns-cloudflare certbot'
+{{- end }}
