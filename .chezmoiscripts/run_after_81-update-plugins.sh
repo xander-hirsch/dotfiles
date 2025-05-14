@@ -15,6 +15,7 @@ touch $LAST_UPDATE_FILE
 if which tmux > /dev/null
 then
     echo 'Updating Tmux plugins...'
+    $HOME/.tmux/plugins/tpm/bin/install_plugins > /dev/null
     $HOME/.tmux/plugins/tpm/bin/update_plugins all > /dev/null
 fi
 
