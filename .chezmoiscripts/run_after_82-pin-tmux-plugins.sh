@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 
-cd $XDG_CONFIG_HOME/tmux/plugins/tmux-menus
+TMUX_PLUGINS_DIR=$HOME/.config/tmux/plugins
+
+cd $TMUX_PLUGINS_DIR/tmux-menus
 git switch --quiet main && git merge --quiet --ff-only @{upstream}
