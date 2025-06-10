@@ -14,9 +14,10 @@ done
 source "${HOME}/.aliases"
 
 #####  plugins  #####
-source "${ZDOTDIR}/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
 source "${ZDOTDIR}/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "${ZDOTDIR}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "${ZDOTDIR}/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+source "${ZDOTDIR}/plugins/zsh-you-should-use/you-should-use.plugin.zsh"
 
 #####  macOS  #####
 if [[ $(uname -s) == 'Darwin' ]]; then
