@@ -13,6 +13,12 @@ done
 
 source "${HOME}/.aliases"
 
+# Fallback to zle if in SSH and TERM is Ghostty
+# The nex readkey engine has an issue with bracketed paste
+if [[ -n $SSH_CONNECTION && $TERM == "xterm-ghostty" ]]; then
+  export ZVM_READKEY_ENGINE=zle
+fi
+
 #####  plugins  #####
 source "${ZDOTDIR}/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "${ZDOTDIR}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
